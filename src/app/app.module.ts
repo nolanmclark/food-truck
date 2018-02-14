@@ -9,13 +9,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AgmCoreModule } from '@agm/core';
 import { AboutComponent } from './pages/about/about.component';
+import { MapComponent } from './pages/map/map.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientHomeComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    MapComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

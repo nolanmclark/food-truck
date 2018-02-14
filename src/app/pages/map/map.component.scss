@@ -1,0 +1,59 @@
+#content {
+    width: calc(100% - 250px);
+    padding-bottom: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#content.active {
+    width: 100%;
+}
+
+.active-trucks {
+  list-style: none;
+  display: block;
+  padding: 10px;
+  li {
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    padding: 20px 20px 0  20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    h1 {
+      font-size: 1em;
+      font-weight: 500;
+      padding-right: 20px;
+      color: #32455d;
+    }
+  }
+}
+.truck-name-info {
+  flex-grow: 1;
+}
+
+.truck-rating {
+  h1 {
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}

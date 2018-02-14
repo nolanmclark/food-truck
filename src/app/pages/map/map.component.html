@@ -1,0 +1,16 @@
+<div id="content">
+  <agm-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="13" style="height: 60vh; padding: 0; margin: 0">
+    <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+  </agm-map>
+  <ul class="active-trucks">
+    <li *ngFor="let truck of truckList">
+      <div class="truck-name-info">
+        <h1>{{truck.truckName}}</h1>
+        <p>Miles from you: 0.4mi</p>
+      </div>
+      <div class="truck-rating">
+        <h1>{{truck.rating}}</h1>
+      </div>
+    </li>
+  </ul>
+<div>

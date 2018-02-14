@@ -4,35 +4,31 @@
                 <a routerLink="/"><h5>Text or Logo</h5></a>
             </div>
             <ul class="list-unstyled components nav">
-                <li class="active">
-                  <a href="#">
+                <li [routerLink]="['map']" routerLinkActive="active">
+                  <a>
                       <i class="fa fa-map-pin nav-icon" aria-hidden="true"></i>
                       <h4 class="nav-link" style="margin-left:6px">Map</h4>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-star nav-icon" aria-hidden="true"></i>
-                  <h4 class="nav-link">Favorites</h4>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
+                <li [routerLink]="['search']" routerLinkActive="active">
+                  <a>
                     <i class="fa fa-search nav-icon" aria-hidden="true"></i>
-                    <h4 class="nav-link">Search</h4>
+                    <h4 class="nav-link" >Search</h4>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
+                <li routerLinkActive="active">
+                  <a>
+                    <i class="fa fa-star nav-icon" aria-hidden="true"></i>
+                    <h4 class="nav-link">Favorites</h4>
+                  </a>
+                </li>
+                <li routerLinkActive="active">
+                  <a>
                     <i class="fa fa-comment nav-icon" aria-hidden="true"></i>
                     <h4 class="nav-link">Contact</h4>
                   </a>
                 </li>
             </ul>
         </nav>
-        <div id="content">
-          <agm-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="13" style="height: 60vh; padding: 0; margin: 0">
-            <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
-          </agm-map>
-        <div>
 </div>
+<router-outlet></router-outlet>

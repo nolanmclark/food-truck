@@ -63,7 +63,7 @@ a, a:hover, a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: $primary;
+    background: #fff;
     color: $secondary;
     transition: all 0.3s;
 }
@@ -72,6 +72,7 @@ a, a:hover, a:focus {
 }
 .nav li {
   width: 100%;
+  outline: none;
 }
 .nav-icon {
   margin-right: 20px;
@@ -96,14 +97,14 @@ a, a:hover, a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: $secondary;
+    background: #333;
     color: #fff;
 }
 
 
 
 #sidebar ul.components {
-    padding: 20px 0;
+    padding: 0;
 }
 
 #sidebar ul p {
@@ -115,15 +116,16 @@ a, a:hover, a:focus {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    outline: none;
 }
 #sidebar ul li a:hover {
     color: $secondary;
-    background: #fff;
+    background: #eee;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: $secondary;
+    background: #32455d;
 }
 
 
@@ -174,19 +176,6 @@ a.article, a.article:hover {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-#content {
-    width: calc(100% - 250px);
-    padding-bottom: 40px;
-    padding-left: 3px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content.active {
-    width: 100%;
-}
 
 @media (max-width: 768px) {
     #sidebar {
