@@ -11,6 +11,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AboutComponent } from './pages/about/about.component';
 import { MapComponent } from './pages/map/map.component';
 import { SearchComponent } from './pages/search/search.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SearchComponent } from './pages/search/search.component';
     HomeComponent,
     AboutComponent,
     MapComponent,
-    SearchComponent
+    SearchComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,

@@ -2,11 +2,13 @@
   <div class="search">
     <h1>Food Truck Search</h1>
     <p>Search by a food truck name to get more information.</p>
-    <input [(ngModel)]="q" placeholder="Food truck name..." class="form-control controls" (keypress)="onKey($event)" />
+    <input [(ngModel)]="query" placeholder="Food truck name..." class="form-control controls" />
   </div>
   <div id="info">
-      <div id="parkSuggestion" *ngFor="let park of parkData">
-          <h4 (click)="select(park)">{{park.fullName}}</h4>
-      </div>
+    <ul>
+      <li *ngFor="let item of truckList | fullTextSearch : query : 'truckName'">
+        {{item.truckName}}
+      </li>
+    </ul>
   </div>
 </div>

@@ -7,11 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  q = '';
+  query: any;
+  truckList = [
+      {
+        truckName: 'Localmotive',
+        isOpen: true,
+        rating: 4.7
+      },
+      {
+        truckName: 'Taco Truck',
+        isOpen: true,
+        rating: 4.2
+      }
+    ];
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+
+  }
+
+  //TODO: Get the list of all current trucks
+
+  getAllTrucks() {
 
   }
 

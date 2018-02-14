@@ -23,7 +23,7 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'map', pathMatch: 'full'},
       {path: 'map', component: MapComponent},
       {path: 'search', component: SearchComponent},
-      {path: '**', component: MapComponent},
+      {path: '**', redirectTo: 'client-home', pathMatch: 'full'},
     ]},
     {
       path: 'about',
