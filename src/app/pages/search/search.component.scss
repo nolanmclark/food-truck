@@ -23,6 +23,35 @@
   }
 }
 
+.active-trucks {
+  list-style: none;
+  display: block;
+  padding: 10px;
+  li {
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    padding: 20px 20px 0  20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    h1 {
+      font-size: 1em;
+      font-weight: 500;
+      padding-right: 20px;
+      color: #32455d;
+    }
+  }
+}
+.truck-name-info {
+  flex-grow: 1;
+}
+
+.truck-rating {
+  h1 {
+    padding-right: 10px;
+  }
+}
+
 .form-control {
     display: block;
     width: 100%;

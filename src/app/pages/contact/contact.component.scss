@@ -1,0 +1,52 @@
+#content {
+    width: calc(100% - 250px);
+    padding-bottom: 40px;
+    min-height: 100vh;
+    height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#content.active {
+    width: 100%;
+}
+
+.btn-lg {
+  color: #fff !important;
+  border-radius: 50px;
+  margin: 30px 0 0 0;
+  padding: 10px 50px;
+  font-size: 0.8em;
+}
+
+.contact {
+  padding: 40px;
+  height: 100vh;
+  background-color: #32455d;
+  h1 {
+    font-weight: 600;
+    color: #fff
+  }
+  p {
+    color: #fff;
+  }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}

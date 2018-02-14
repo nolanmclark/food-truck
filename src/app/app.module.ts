@@ -12,6 +12,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { MapComponent } from './pages/map/map.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { ContactComponent } from './pages/contact/contact.component';
+import { LocationService} from './services/location/location.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
     AboutComponent,
     MapComponent,
     SearchComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
     })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

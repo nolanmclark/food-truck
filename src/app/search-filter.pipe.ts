@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'fullTextSearch',
+  name: 'filter',
   pure: false
 })
 export class SearchFilterPipe implements PipeTransform {
+  transform(value: any, args?: any): any {
+      if(!value)return null;
+      if(!args)return value;
 
-  constructor() { }
+      args = args.toLowerCase();
 
-  transform(value: any, query: string, field: string): any {
-      return query ? value.reduce((prev, next) => {
-        if (next[field].includes(query)) { prev.push(next); }
-        return prev;
-      }, []) : value;
-    }
+      return value.filter(function(item){
+          return JSON.stringify(item).toLowerCase().includes(args);
+      });
+  }
 }

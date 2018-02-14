@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './pages/map/map.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const appRoutes: Routes = [
   {
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'map', pathMatch: 'full'},
       {path: 'map', component: MapComponent},
       {path: 'search', component: SearchComponent},
+      {path: 'contact', component: ContactComponent},
       {path: '**', redirectTo: 'client-home', pathMatch: 'full'},
     ]},
     {
@@ -33,7 +35,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
