@@ -23,4 +23,6 @@ export class LocationService {
     this.myLatLng.lat = loc.latitude;
     this.myLatLng.lng = loc.longitude;
   }
+
+
 }
