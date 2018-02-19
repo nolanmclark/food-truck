@@ -201,7 +201,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
   //TODO: Pull list of available and open trucks from DB,
   // create markers for trucks on map, bind custom markers
   getAllTrucks() {
-    let url = `${this.apiRoot}/trucks`;
+    let url = `${this.apiRoot}/locations`;
     let headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
 
