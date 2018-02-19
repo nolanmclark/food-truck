@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
 
 @Component({
   selector: 'app-search',
@@ -20,14 +21,28 @@ export class SearchComponent {
         rating: 4.2
       }
     ];
+    apiRoot: string = 'https://cms-maverick.ddns.net/api/foodtruck'
 
-  constructor() {
-
+  constructor(private http: Http) {
+    this.getAllTrucks();
   }
 
   //TODO: Get the list of all current trucks
 
   getAllTrucks() {
+    let url = `${this.apiRoot}/trucks`;
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
 
+    let ops = new RequestOptions();
+    ops.headers = headers;
+    this.http.get(url, ops).subscribe((res) => {
+      this.truckList = res.json();
+      console.log(this.truckList);
+    });
+  }
+
+  onKey(e) {
+    this.query = e.target.value;
   }
 }

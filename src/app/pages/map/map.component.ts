@@ -1,15 +1,18 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {LocationService} from '../../services/location/location.service';
 import {AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import { AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewChecked {
 
   public map: any = { lat: 41.2524, lng: -95.9980};
+  apiRoot: string = 'https://cms-maverick.ddns.net/api/foodtruck'
 
   public style: any = [
     {
@@ -127,7 +130,7 @@ export class MapComponent implements OnInit {
     }
 ];
 
-  myLatLng: any;
+  myLatLng:any = {lat: '', lng: ''}
 
   markers: any[];
 
@@ -148,12 +151,24 @@ export class MapComponent implements OnInit {
     }
   ];
 
-  constructor(private locService: LocationService) {
+  constructor(private http: Http, private locService: LocationService) {
 
   }
 
   ngOnInit() {
+    if(this.locService.myLatLng.lat === "") {
+      console.log("DN Exist")
+      this.getPosition();
+    } else {
+      this.myLatLng = this.locService.myLatLng;
+      console.log("Exists:" + JSON.stringify(this.locService.myLatLng));
+    }
+    this.getAllTrucks();
     this.createMarkers();
+  }
+
+  ngAfterViewChecked() {
+
   }
 
   createMarkers() {
@@ -169,21 +184,89 @@ export class MapComponent implements OnInit {
           lat: truck.lat,
           lng: truck.lng,
           truckName: truck.truckName,
-          icon: '../../../assets/images/map-marker-icon.png'
+          icon: './assets/images/map-marker-icon.png'
         });
     });
   }
 
   initMap() {
-    this.map.lat = this.locService.myLatLng.lat;
-    this.map.lng = this.locService.myLatLng.lng;
+    this.myLatLng.lat = this.locService.myLatLng.lat;
+    this.myLatLng.lng = this.locService.myLatLng.lng;
   }
 
   clickedMarker(label, idx) {
-  
+
   }
 
   //TODO: Pull list of available and open trucks from DB,
   // create markers for trucks on map, bind custom markers
+  getAllTrucks() {
+    let url = `${this.apiRoot}/trucks`;
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    let ops = new RequestOptions();
+    ops.headers = headers;
+    this.http.get(url, ops).subscribe((res) => {
+      this.truckList = res.json();
+      if(this.myLatLng !== null) {
+        this.getAllDistances();
+      }
+    });
+  }
+
+  getAllDistances() {
+   for(var i = 0; i < this.truckList.length; i++) {
+     this.truckList[i].distanceFrom = this.getDistanceBetweenPoints(this.myLatLng, this.truckList[i].lat, this.truckList[i].lng, 'miles').toFixed(2);
+   }
+ }
+
+ getDistanceBetweenPoints(start, end_lat, end_lng, units){
+     let earthRadius = {
+         miles: 3958.8,
+         km: 6371
+     };
+
+     let end:any = {
+       lat: '',
+       lng: ''
+     };
+     end.lat = end_lat;
+     end.lng = end_lng;
+
+     let R = earthRadius[units || 'miles'];
+     let lat1 = start.lat;
+     let lon1 = start.lng;
+     let lat2 = end.lat;
+     let lon2 = end.lng;
+
+     let dLat = this.toRad((lat2 - lat1));
+     let dLon = this.toRad((lon2 - lon1));
+     let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+     Math.cos(this.toRad(lat1)) * Math.cos(this.toRad(lat2)) *
+     Math.sin(dLon / 2) *
+     Math.sin(dLon / 2);
+     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+     let d = R * c;
+     return d;
+ }
+
+ toRad(x){
+     return x * Math.PI / 180;
+ }
+
+ getPosition() {
+   if(window.navigator.geolocation){
+       window.navigator.geolocation.getCurrentPosition((res) => {
+         if(res) {
+           this.locService.setLocation(res.coords);
+           this.myLatLng = this.locService.myLatLng;
+           console.log("should exist");
+         } else {
+           console.log(res);
+         }
+       });
+   };
+ }
 
 }
