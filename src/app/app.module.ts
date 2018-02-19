@@ -14,6 +14,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LocationService} from './services/location/location.service';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LocationService} from './services/location/location.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAqMfCGxfUAMshlsF7_D-oUpcuHMje-JIA'

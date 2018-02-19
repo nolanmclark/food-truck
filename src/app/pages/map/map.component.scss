@@ -6,9 +6,16 @@
     position: absolute;
     top: 0;
     right: 0;
+    overflow: hidden;
+    height: 100%;
 }
 #content.active {
     width: 100%;
+}
+
+.make-scrollable {
+    height: 300px; //Or any other height you wish
+    overflow-y: scroll;
 }
 
 .active-trucks {

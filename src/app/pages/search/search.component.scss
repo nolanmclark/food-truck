@@ -6,9 +6,42 @@
     position: absolute;
     top: 0;
     right: 0;
+    overflow: hidden;
+    height: 100%;
 }
 #content.active {
     width: 100%;
+}
+
+.make-scrollable {
+    height: 400px;//Or any other height you wish
+    overflow-y: scroll;
+}
+
+
+.icons .i {
+  height: 26px;
+  padding: 0 10px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.icons .i:hover {
+  cursor: pointer;
+}
+
+.modal-dialog.cascading-modal .modal-header .title {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.md-form.form-sm .prefix {
+    font-size: 1.2rem;
+    top: 0.4rem;
+    color: #32455d;
 }
 
 .search {
@@ -20,8 +53,27 @@
   }
   p {
     color: #fff;
+
   }
 }
+
+.btn-info {
+    background-color: #32455d;
+}
+
+.light-blue.darken-3 {
+    background-color: #32455d !important;
+}
+
+.md-form.form-sm label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn-info:hover {
+    background-color: #496588 !important;
+}
+
 
 .active-trucks {
   list-style: none;
@@ -40,6 +92,12 @@
       padding-right: 20px;
       color: #32455d;
     }
+    p {
+      font-size: .9em;
+      font-weight: 300;
+      padding-right: 20px;
+      color: #333;
+    }
   }
 }
 .truck-name-info {
@@ -52,7 +110,7 @@
   }
 }
 
-.form-control {
+.form-control-update {
     display: block;
     width: 100%;
     max-width: 600px;

@@ -1,13 +1,13 @@
 <div id="content">
-  <agm-map 
-  [latitude]="map.lat" 
-  [longitude]="map.lng" 
-  [zoom]="13" 
+  <agm-map
+  [latitude]="map.lat"
+  [longitude]="map.lng"
+  [zoom]="13"
   [styles]="style"
   style="height: 60vh; padding: 0; margin: 0"
   >
 
-    <agm-marker 
+    <agm-marker
       *ngFor="let m of markers; let i = index"
       (markerClick)="clickedMarker(m.label, i)"
       [latitude]="m.lat"
@@ -16,18 +16,18 @@
       [iconUrl]="m.icon"
       >
       <agm-info-window>
-        <strong>{{m.truckName}}</strong>
+        <strong>{{m.name}}</strong>
       </agm-info-window>
 
     </agm-marker>
-    
+
   </agm-map>
 
-  <ul class="active-trucks">
+  <ul class="active-trucks make-scrollable">
     <li *ngFor="let truck of truckList">
       <div class="truck-name-info">
-        <h1>{{truck.truckName}}</h1>
-        <p>Miles from you: 0.4mi</p>
+        <h1>{{truck.name}}</h1>
+        <p>Miles from you: {{truck.distanceFrom}}mi</p>
       </div>
       <div class="truck-rating">
         <h1>{{truck.rating}}</h1>
