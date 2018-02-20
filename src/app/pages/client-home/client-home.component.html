@@ -1,22 +1,13 @@
-<div class="wrapper">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <a routerLink="/"><h5 class="title">Füdtruck</h5></a>
-            </div>
-            <ul class="list-unstyled components nav">
-                <li [routerLink]="['map']" routerLinkActive="active">
-                  <a>
-                      <i class="fa fa-map-pin nav-icon" aria-hidden="true"></i>
-                      <h4 class="nav-link" style="margin-left:6px">Map</h4>
-                  </a>
-                </li>
-                <li [routerLink]="['search']" routerLinkActive="active">
-                  <a>
-                    <i class="fa fa-search nav-icon" aria-hidden="true"></i>
-                    <h4 class="nav-link" >Search</h4>
-                  </a>
-                </li>
-            </ul>
-        </nav>
-</div>
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
+    <logo>
+        <a class="logo navbar-brand" href="#">FüdTime</a>
+    </logo>
+    <links>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link">Truck Login</a>
+            </li>
+        </ul>
+    </links>
+</mdb-navbar>
 <router-outlet></router-outlet>

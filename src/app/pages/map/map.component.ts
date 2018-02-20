@@ -13,7 +13,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
 
   public map: any = { lat: 41.2524, lng: -95.9980};
   apiRoot: string = 'https://cms-maverick.ddns.net/api/foodtruck'
-
+  public query: any;
   public style: any = [
     {
         "featureType": "water",
@@ -164,7 +164,6 @@ export class MapComponent implements OnInit, AfterViewChecked {
       console.log("Exists:" + JSON.stringify(this.locService.myLatLng));
     }
     this.getAllTrucks();
-    this.createMarkers();
   }
 
   ngAfterViewChecked() {
@@ -210,6 +209,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
     this.http.get(url, ops).subscribe((res) => {
       this.truckList = res.json();
       if(this.myLatLng !== null) {
+        this.createMarkers();
         this.getAllDistances();
       }
     });
@@ -269,4 +269,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
    };
  }
 
+ onKey(e) {
+   this.query = e.target.value;
+ }
 }

@@ -1,5 +1,5 @@
 #content {
-    width: calc(100% - 250px);
+    width: 100%;
     padding-bottom: 40px;
     min-height: 100vh;
     transition: all 0.3s;
@@ -9,14 +9,66 @@
     overflow: hidden;
     height: 100%;
 }
-#content.active {
-    width: 100%;
+
+.search {
+  box-shadow: 0px 4px 10px rgba(0,0,0, 0.3);
+  position: relative;
+  top: 100px;
+  z-index: 2;
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+  max-width: 600px;
+  height: 45px;
 }
 
 .make-scrollable {
-    height: 300px; //Or any other height you wish
+    height: 32vh; //Or any other height you wish
     overflow-y: scroll;
 }
+
+.icons .i {
+  height: 26px;
+  padding: 0 10px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.icons .i:hover {
+  cursor: pointer;
+}
+
+.modal-dialog.cascading-modal .modal-header .title {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.md-form.form-sm .prefix {
+    font-size: 1.2rem;
+    top: 0.4rem;
+    color: #32455d;
+}
+
+.btn-info {
+    background-color: #32455d;
+}
+
+.light-blue.darken-3 {
+    background-color: #32455d !important;
+}
+
+.md-form.form-sm label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn-info:hover {
+    background-color: #496588 !important;
+}
+
 
 .active-trucks {
   list-style: none;
@@ -47,20 +99,64 @@
   }
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-    }
-    #content.active {
-        width: calc(100% - 250px);
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
+.form-control-update {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: rgba(255,255,255, 0.9);
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    outline-color: black;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.form-control::-moz-placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #999;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #999;
+}
+
+.form-control::-ms-expand {
+    background-color: transparent;
+    border: 0;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+    background-color: #eee;
+    opacity: 1;
+}
+
+.form-control[disabled],
+fieldset[disabled] .form-control {
+    cursor: not-allowed;
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
 }
