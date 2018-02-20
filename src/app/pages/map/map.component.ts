@@ -14,6 +14,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
   public map: any = { lat: 41.2524, lng: -95.9980};
   apiRoot: string = 'https://cms-maverick.ddns.net/api/foodtruck'
   public query: any;
+
   public style: any = [
     {
         "featureType": "water",
@@ -156,14 +157,19 @@ export class MapComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    if(this.locService.myLatLng.lat === "") {
-      console.log("DN Exist")
-      this.getPosition();
-    } else {
-      this.myLatLng = this.locService.myLatLng;
-      console.log("Exists:" + JSON.stringify(this.locService.myLatLng));
-    }
-    this.getAllTrucks();
+    this.locationInit().then(res => {
+        this.getAllTrucks();
+    });
+  }
+
+  async locationInit() {
+      if(this.locService.myLatLng.lat === "") {
+        console.log("DN Exist")
+        return await this.getPosition();
+      } else {
+        this.myLatLng = this.locService.myLatLng;
+        console.log("Exists:" + JSON.stringify(this.locService.myLatLng));
+      }
   }
 
   ngAfterViewChecked() {
@@ -188,11 +194,6 @@ export class MapComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  initMap() {
-    this.myLatLng.lat = this.locService.myLatLng.lat;
-    this.myLatLng.lng = this.locService.myLatLng.lng;
-  }
-
   clickedMarker(label, idx) {
 
   }
@@ -200,6 +201,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
   //TODO: Pull list of available and open trucks from DB,
   // create markers for trucks on map, bind custom markers
   getAllTrucks() {
+    console.log("trucks GET");
     let url = `${this.apiRoot}/locations`;
     let headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
@@ -256,17 +258,20 @@ export class MapComponent implements OnInit, AfterViewChecked {
  }
 
  getPosition() {
-   if(window.navigator.geolocation){
-       window.navigator.geolocation.getCurrentPosition((res) => {
-         if(res) {
-           this.locService.setLocation(res.coords);
-           this.myLatLng = this.locService.myLatLng;
-           console.log("should exist");
-         } else {
-           console.log(res);
-         }
-       });
-   };
+   return new Promise((resolve) => {
+     if(window.navigator.geolocation){
+         window.navigator.geolocation.getCurrentPosition((res) => {
+           if(res) {
+             this.locService.setLocation(res.coords);
+             this.myLatLng = this.locService.myLatLng;
+             console.log("should exist");
+             resolve('success');
+           } else {
+             console.log(res);
+           }
+         });
+     };
+   });
  }
 
  onKey(e) {
