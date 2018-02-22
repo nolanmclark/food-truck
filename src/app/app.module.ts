@@ -12,8 +12,11 @@ import { MapComponent } from './pages/map/map.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LocationService} from './services/location/location.service';
-import {HttpModule} from '@angular/http';
+import { AuthService } from './services/auth/auth.service';
+import { HttpModule} from '@angular/http';
 import { LoginComponent } from './pages/login/login.component';
+import { NgModel } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { LoginComponent } from './pages/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpModule,
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -36,7 +40,7 @@ import { LoginComponent } from './pages/login/login.component';
     })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [LocationService],
+  providers: [LocationService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import { NgModel } from '@angular/forms';
+import {AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,41 +10,24 @@ import {Http, Response, RequestOptions, Headers} from '@angular/http';
 })
 export class LoginComponent implements OnInit {
 
-  apiRoot="https://vs-genius.ddns.net/api/foodtruck/auth"
-  email: string;
-  pass: string;
+  email: any;
+  pass: any;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private authService: AuthService) {
+    this.email = '';
+    this.pass = '';
+  }
 
   ngOnInit() {
 
   }
-
-  login() {
-    if(this.email === '') {
-      alert('Email is invalid');
-      return;
-    } else if(this.pass === '') {
-      alert('Password is invalid');
-      return;
+  login(email, pass) {
+    console.log(this.email + this.pass)
+    if(this.email !== '' && this.pass !== '') {
+      this.authService.login(this.email, this.pass);
+      } else {
+        alert("Invalid credentials");
+      }
     }
     // authorization:jwt
-    let headers = new Headers();
-    headers.append('Access-Control-Allow-Origin', '*');
-
-    let ops = new RequestOptions();
-    ops.headers = headers;
-
-    let token = this.http.post(this.apiRoot, {email: this.email, pass: this.pass})
-    .subscribe(res => {
-          console.log(res);
-    });
-    // .then(res => {
-    //   let token = res;
-    //   console.log(token);
-    // }).catch((err)=> {
-    //   console.log(err);
-    // });
-  }
-
 }

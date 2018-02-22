@@ -33,11 +33,11 @@
 
                                     <!--Body-->
                                     <div class="md-form">
-                                        <input type="text" id="form3" [(ngModel)]="email" class="form-control" mdbActive>
+                                        <input type="text" id="form3" [(ngModel)]="email"  class="form-control" mdbActive (onkeyup)="onKeyUpEmail(email)">
                                         <label for="form3">Email</label>
                                     </div>
                                     <div class="md-form">
-                                     <input type="password" id="form2" [(ngModel)]="pass" class="form-control" mdbActive />
+                                     <input type="password" id="form2" [(ngModel)]="pass" class="form-control" mdbActive (onkeyup)="onKeyUpPassword(pass)"/>
                                         <label for="form2">Password</label>
                                     </div>
 
