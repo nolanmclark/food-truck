@@ -17,6 +17,7 @@ import { HttpModule} from '@angular/http';
 import { LoginComponent } from './pages/login/login.component';
 import { NgModel } from '@angular/forms';
 import { FormsModule} from '@angular/forms';
+import { TruckClientComponent } from './pages/truck-client/truck-client.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule} from '@angular/forms';
     SearchFilterPipe,
     ContactComponent,
     LoginComponent,
+    TruckClientComponent,
   ],
   imports: [
     BrowserModule,

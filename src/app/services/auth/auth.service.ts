@@ -14,15 +14,20 @@ export class AuthService {
    }
 
    login(email:string, password:string) {
+      return new Promise((resolve, err) => {
         let head = new Headers({ 'Content-Type': 'application/json' });
-       return this.http.post(`${this.apiRoot}/auth`, JSON.stringify({email: email, pw: password}), { headers: head})
-         .subscribe((res: Response) => {
-           let body = JSON.parse(res['_body']);
-           let token = body.access_token;
-           this.userToken = token;
-           this.test(token);
+        this.http.post(`${this.apiRoot}/auth`, JSON.stringify({email: email, pw: password}), { headers: head})
+          .subscribe((res: Response) => {
+            let body = JSON.parse(res['_body']);
+            let token = body.access_token;
+            this.userToken = token;
+            this.setSession(token);
+            resolve('success');
          });
-   }
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
 
    getUserToken() {
      return this.userToken;
@@ -40,10 +45,8 @@ export class AuthService {
      });
    }
 
-   private setSession(authResult) {
-       const expiresAt = moment().add(authResult.expiresIn,'second');
-       localStorage.setItem('id_token', authResult.idToken);
-       localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+   private setSession(token) {
+       localStorage.setItem('id_token', token);
    }
 
    logout() {
@@ -52,16 +55,14 @@ export class AuthService {
    }
 
    isLoggedIn() {
-       return moment().isBefore(this.getExpiration());
+    if (localStorage.getItem("id_token") === null) {
+      return false;
+    } else {
+      return true;
+    }
    }
 
    isLoggedOut() {
        return !this.isLoggedIn();
-   }
-
-   getExpiration() {
-       const expiration = localStorage.getItem("expires_at");
-       const expiresAt = JSON.parse(expiration);
-       return moment(expiresAt);
    }
 }

@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './pages/map/map.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import {LoginComponent} from './pages/login/login.component';
+import {TruckClientComponent} from './pages/truck-client/truck-client.component';
 
 const appRoutes: Routes = [
   {
@@ -20,6 +21,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'truck-client',
+    component: TruckClientComponent,
   },
   {
     path: 'client-home',
