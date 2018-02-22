@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-  login(email, pass) {
+
+  login() {
+    // authorization:jwt
     console.log(this.email + this.pass)
     if(this.email !== '' && this.pass !== '') {
       this.authService.login(this.email, this.pass);
@@ -29,5 +31,4 @@ export class LoginComponent implements OnInit {
         alert("Invalid credentials");
       }
     }
-    // authorization:jwt
 }
