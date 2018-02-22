@@ -103,7 +103,7 @@ class Menus (Base):
 		return {
 	'mid': self.mid,
 	'tid': self.tid,
-	'menu_img_url': menu_img_url
+	'menu_img_url': self.menu_img_url
 	}
 
 	

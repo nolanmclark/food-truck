@@ -5,9 +5,9 @@ from pprint import pprint
 
 def build():
 	truck_ids = Session.query(Trucks.tid).all()
-	if len(truck_ids) == 0
+	if len(truck_ids) == 0:
 		print('[ERROR] - There are no trucks.')
-        sys.exit(1)
+		sys.exit(1)
 		
 	menus = []
 	menus.append(Menus(truck_ids[0], 'testmenu.com'))
@@ -23,5 +23,5 @@ def build():
 	#Session.commit()
 	pprint([x.asdict() for x in Menus.query.all()])
 		
-if __name__ == '__main__'
+if __name__ == '__main__':
 	build()
