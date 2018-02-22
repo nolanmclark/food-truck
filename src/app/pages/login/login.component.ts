@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private login() {
+  login() {
     if(this.email === '') {
       alert('Email is invalid');
       return;
