@@ -13,6 +13,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LocationService} from './services/location/location.service';
 import {HttpModule} from '@angular/http';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {HttpModule} from '@angular/http';
     MapComponent,
     SearchFilterPipe,
     ContactComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

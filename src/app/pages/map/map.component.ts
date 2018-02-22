@@ -12,7 +12,7 @@ import { AfterViewChecked } from '@angular/core';
 export class MapComponent implements OnInit, AfterViewChecked {
 
   public map: any = { lat: 41.2524, lng: -95.9980};
-  apiRoot: string = 'https://cms-maverick.ddns.net/api/foodtruck'
+  apiRoot: string = 'https://vs-genius.ddns.net/api/foodtruck'
   public query: any;
 
   public style: any = [

@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './pages/map/map.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import {LoginComponent} from './pages/login/login.component';
 
 const appRoutes: Routes = [
   {
@@ -17,13 +18,16 @@ const appRoutes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
     path: 'client-home',
     component: ClientHomeComponent,
     children: [
       {path: '', redirectTo: 'map', pathMatch: 'full'},
       {path: 'map', component: MapComponent},
-      {path: 'contact', component: ContactComponent},
-      {path: '**', redirectTo: 'client-home', pathMatch: 'full'},
+      {path: '**', redirectTo: 'home', pathMatch: 'full'},
     ]},
     {
       path: 'about',
