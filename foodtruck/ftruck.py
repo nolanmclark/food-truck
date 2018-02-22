@@ -14,9 +14,9 @@ logging.config.fileConfig(LOG_FILE, disable_existing_loggers=False)
 logger = logging.getLogger()
 
 
-def authenticate(uid, pw):
-    logger.debug('checking uid: %s, pw: %s' % (uid, pw))
-    user = functions.auth(uid, pw)
+def authenticate(email, pw):
+    logger.debug('checking email: %s, pw: %s' % (email, pw))
+    user = functions.auth(email, pw)
     logger.debug(user)
     if user != -1:
         return user
@@ -31,7 +31,7 @@ def identity(payload):
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
-app.config['JWT_AUTH_USERNAME_KEY'] = 'uid'
+app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
 app.config['JWT_AUTH_PASSWORD_KEY'] = 'pw'
 jwt = JWT(app, authenticate, identity)
 

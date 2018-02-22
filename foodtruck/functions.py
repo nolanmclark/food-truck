@@ -12,7 +12,7 @@ logger = logging.getLogger()
 
 
 def auth(uid, pw):
-    user = Users.query.filter(Users.uid == uid).scalar()
+    user = Users.query.filter(Users.email == email).scalar()
     valid = user.validate_pw(pw)
     logger.debug('password for %s: %s' % (uid, valid))
     if valid:
