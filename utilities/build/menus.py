@@ -20,7 +20,7 @@ def build():
 	menus.append(Menus(truck_ids[7], 'grassEatnSzn.com'))
 	
 	Session.bulk_save_objects(menus)
-	#Session.commit()
+	Session.commit()
 	pprint([x.asdict() for x in Menus.query.all()])
 		
 if __name__ == '__main__':

@@ -41,3 +41,8 @@ def all_users():
     users = [x.asdict() for x in Users.query.all()]
     return json.dumps(users)
 
+
+def all_menus():
+    menus = [x.asdict() for x in Menus.query.all()]
+    return json.dumps(menus)
+

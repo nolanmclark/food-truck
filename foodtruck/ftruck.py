@@ -75,6 +75,12 @@ def all_users():
     return Response(functions.all_users())
 
 
+@app.route('/menus', methods=['GET'])
+def all_menus():
+    logger.info("[%s] - %s" % (request.method, request.path))
+    return Response(functions.all_menus())
+
+
 @app.after_request
 def after_request(response):
     response.headers['Content-Type'] = 'application/json'
