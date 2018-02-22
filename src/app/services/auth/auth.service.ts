@@ -29,10 +29,10 @@ export class AuthService {
    }
 
   test(token) {
-     let url = `${this.apiRoot}/locations`;
+     let url = `${this.apiRoot}/protected`;
      let headers = new Headers();
      headers.append('Access-Control-Allow-Origin', '*');
-     headers.append('authorization', token);
+     headers.append('Authorization', "JWT " + token);
      let ops = new RequestOptions();
      ops.headers = headers;
      this.http.get(url, ops).subscribe((res) => {
