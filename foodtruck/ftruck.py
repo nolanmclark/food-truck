@@ -20,7 +20,6 @@ def authenticate(email, pw):
     logger.debug(user)
     if user != -1:
         return user
-    return -1
 
 
 def identity(payload):
@@ -56,6 +55,19 @@ def index():
     logger.info("[%s] - %s" % (request.method, request.path))
     return Response(json.dumps(dict(current_identity)))
 
+'''
+@app.route('/register', methods=['POST'])
+def register():
+    # consider only allowing foodtruck administrators to create new trucks
+    # trucks can then have one primary email/pw or
+    # trucks also have a 'secret' field that trucks admins can share with
+    # secondary users when they create their account for the truck
+    logger.info("[%s] - %s" % (request.method, request.path))
+    try:
+        req = request.get_json()
+        valid = functions.register(req)
+    return Response(json.dumps({'status': valid})
+'''
 
 @app.route('/trucks', methods=['GET'])
 def all_trucks():
