@@ -41,6 +41,23 @@
   cursor: pointer;
 }
 
+#menu-cat {
+    font-weight: 600 !important;
+    color: #101f73 !important;
+}
+
+#menu-item {
+    font-weight: 400 !important;
+    font-size: 1.2em !important;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 1000px;
+        margin: 30px auto;
+    }
+}
+
 .modal-dialog.cascading-modal .modal-header .title {
   font-weight: 700;
   text-transform: uppercase;

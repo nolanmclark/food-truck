@@ -30,19 +30,18 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.email + this.pass)
     if(this.email !== '' && this.pass !== '') {
-      this.authService.login(this.email, this.pass)
-      .then((res) => {
+      this.authService.login(this.email, this.pass).then((res) => {
         if(res === 'success') {
           console.log('logged in');
           this.router.navigateByUrl('/truck-client');
         } else {
-          alert("Error");
+          return res;
         }
       }).catch((err) => {
         alert("Caught Error");
       });
     } else {
-        alert("Invalid credentials");
+        alert("Check your credentials");
       }
     }
 }

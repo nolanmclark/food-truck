@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import {LocationService} from '../../services/location/location.service';
 import {AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
@@ -11,9 +11,14 @@ import { AfterViewChecked } from '@angular/core';
 })
 export class MapComponent implements OnInit, AfterViewChecked {
 
+@ViewChild('content') public contentModal;
+public name: string;
+
   public map: any = { lat: 41.2524, lng: -95.9980};
   apiRoot: string = 'https://vs-genius.ddns.net/api/foodtruck'
   public query: any;
+  menu: any;
+  currentTruckName: any;
 
   public style: any = [
     {
@@ -195,6 +200,18 @@ export class MapComponent implements OnInit, AfterViewChecked {
   }
 
   clickedMarker(label, idx) {
+
+  }
+
+  openMenu(id, name) {
+    this.currentTruckName = name;
+    let head = new Headers({ 'Content-Type': 'application/json' });
+    this.http.get(`${this.apiRoot}/menus/${id}`, { headers: head}).subscribe(res => {
+        let response = res.json();
+        this.menu = Object.keys(response).map(i => response[i]);
+        this.contentModal.show();
+        console.log(this.menu);
+    });
 
   }
 

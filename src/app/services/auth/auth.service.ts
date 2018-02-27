@@ -6,27 +6,35 @@ import * as moment from "moment";
 @Injectable()
 export class AuthService {
 
-  apiRoot="https://vs-genius.ddns.net/api/foodtruck"
+  apiRoot="https://vs-genius.ddns.net/api/foodtruck";
   private userToken: any;
 
   constructor(private http: Http) {
 
    }
 
-   login(email:string, password:string) {
+   login(email, password) {
       return new Promise((resolve, err) => {
         let head = new Headers({ 'Content-Type': 'application/json' });
         this.http.post(`${this.apiRoot}/auth`, JSON.stringify({email: email, pw: password}), { headers: head})
           .subscribe((res: Response) => {
-            let body = JSON.parse(res['_body']);
-            let token = body.access_token;
-            this.userToken = token;
-            this.setSession(token);
-            resolve('success');
+            if(res.status === 200) {
+              let body = JSON.parse(res['_body']);
+              let token = body.access_token;
+              this.userToken = token;
+              this.setSession(token);
+              resolve('success');
+            } else if(res.status === 401) {
+              alert("Invalid Credentials");
+            } else if(res.status === 500) {
+              alert("Invalid Credentials");
+            } else {
+              alert("Error, contact administrators.")
+            }
          });
       }).catch((err) => {
         console.log(err);
-      })
+      });
     }
 
    getUserToken() {
