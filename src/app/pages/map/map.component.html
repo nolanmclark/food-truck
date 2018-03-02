@@ -51,8 +51,11 @@
             <div class="modal-body">
                 <div id="menuBody" *ngFor="let obj of menu">
                     <h3 id="menu-cat">{{obj[0].category}}</h3>
-                    <h4 id="menu-item">{{obj[0].item}}</h4>
-                    <p id="menu-price">Price: {{obj[0].price}}</p>
+                    <div id="m-item" *ngFor="let i of obj">
+                      <h4 id="menu-item">{{i.item}}</h4>
+                      <p id="menu-desc"><em>{{i.descr}}</em></p>
+                      <p id="menu-price">${{i.price}}</p>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

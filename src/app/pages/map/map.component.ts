@@ -205,8 +205,7 @@ public name: string;
 
   openMenu(id, name) {
     this.currentTruckName = name;
-    let head = new Headers({ 'Content-Type': 'application/json' });
-    this.http.get(`${this.apiRoot}/menus/${id}`, { headers: head}).subscribe(res => {
+    this.http.get(`${this.apiRoot}/menus/${id}`).subscribe(res => {
         let response = res.json();
         this.menu = Object.keys(response).map(i => response[i]);
         this.contentModal.show();
