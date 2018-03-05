@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.email + this.pass)
     if(this.email !== '' && this.pass !== '') {
       this.authService.login(this.email, this.pass).then((res) => {
         if(res === 'success') {

@@ -7,6 +7,7 @@ import { MapComponent } from './pages/map/map.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import {LoginComponent} from './pages/login/login.component';
 import {TruckClientComponent} from './pages/truck-client/truck-client.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'truck-client',
     component: TruckClientComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'client-home',

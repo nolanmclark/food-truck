@@ -10,6 +10,24 @@
     height: 100%;
 }
 
+.loader {
+    width: 100%;
+    height: 120%;
+    background-color: #32455d;
+    z-index: 99999;
+    align-items: center;
+}
+
+.loader p {
+    color: #fff;
+    font-size: 2em;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    margin: 0 auto;
+    z-index: 999999;
+}
+
 .search {
   box-shadow: 0px 4px 10px rgba(0,0,0, 0.3);
   position: relative;

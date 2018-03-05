@@ -139,6 +139,7 @@ public name: string;
   myLatLng:any = {lat: '', lng: ''}
 
   markers: any[];
+  loading: boolean;
 
   truckList: any[] = [
     {
@@ -158,7 +159,7 @@ public name: string;
   ];
 
   constructor(private http: Http, private locService: LocationService) {
-
+    this.loading = true;
   }
 
   ngOnInit() {
@@ -237,6 +238,9 @@ public name: string;
    for(var i = 0; i < this.truckList.length; i++) {
      this.truckList[i].distanceFrom = this.getDistanceBetweenPoints(this.myLatLng, this.truckList[i].lat, this.truckList[i].lng, 'miles').toFixed(2);
    }
+   setTimeout(() => {
+    this.loading = false;
+   }, 500);
  }
 
  getDistanceBetweenPoints(start, end_lat, end_lng, units){

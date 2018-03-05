@@ -19,6 +19,8 @@ import { NgModel } from '@angular/forms';
 import { FormsModule} from '@angular/forms';
 import { TruckClientComponent } from './pages/truck-client/truck-client.component';
 import { KeysPipe } from './keys.pipe';
+import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { KeysPipe } from './keys.pipe';
     LoginComponent,
     TruckClientComponent,
     KeysPipe,
+    RegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
