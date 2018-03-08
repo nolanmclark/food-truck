@@ -195,7 +195,8 @@ public name: string;
           lat: truck.lat,
           lng: truck.lng,
           truckName: truck.truckName,
-          icon: './assets/images/map-marker-icon.png'
+          icon: './assets/images/map-marker-icon.png',
+          visibility: true
         });
     });
   }

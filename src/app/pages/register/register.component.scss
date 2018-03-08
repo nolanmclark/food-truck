@@ -17,6 +17,27 @@
     background-color: #32455d;
     border-color: #32455d;
 }
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: scroll;
+}
+
+.md-form[_ngcontent-c1] {
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 10px;
+}
+
+.outer-form-box {
+    background-color: #fff;
+    padding: 1.25rem 4rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+}
 
 .text-center {
     padding-top: 20px;
@@ -48,6 +69,12 @@
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    max-height: auto;
+}
+.btn-outline-primary {
+    border: 2px solid #32455d;
+    color: #32455d !important;
+    background-color: transparent;
 }
 .card .card-body h3 {
     margin-bottom: 1rem;
@@ -55,7 +82,7 @@
     text-transform: uppercase;
     font-size: 1.4em;
 }
-.btn {
+.btn-solid{
   background-color:#32455d;
 }
 h6 {
@@ -66,12 +93,30 @@ h6 {
     margin-bottom: 1.5rem;
     margin-top: 40px;
 }
+.btn-secondary {
+    /* border: 2px solid #01d36b; */
+    color: #fff !important;
+    background: #01d36b !important;
+}
 
 @media (max-width: 768px) {
     .navbar:not(.top-nav-collapse) {
         background: #ff8a65 !important;
     }
+    .card-body[_ngcontent-c1] {
+        min-width: 500px;
+      }
 }
+
+@media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #ff8a65 !important;
+    }
+    .card-body[_ngcontent-c1] {
+        min-width: 0;
+      }
+}
+
 @media (max-width: 740px) {
     .full-height,
     .full-height body,
@@ -80,6 +125,18 @@ h6 {
         height: 1150px;
     }
     .card-body[_ngcontent-c1] {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 30px;
       min-width: 300px;
+    }
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        height: 100%;
+        padding-right: 0px;
+        padding-left: 0px;
     }
 }

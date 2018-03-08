@@ -21,7 +21,7 @@
             <div class="container flex-center">
                 <div class="d-flex align-items-center">
                     <div class="row flex-center pt-10 mt-10">
-                        <div class="col-md-12 col-xl-12">
+                        <div class="col-md-8 col-xl-8">
                             <!--Form-->
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body z-depth-2">
@@ -33,11 +33,11 @@
 
                                     <!--Body-->
                                     <div class="md-form">
-                                        <input type="text" id="form3" [(ngModel)]="email"  class="form-control" mdbActive />
+                                        <input type="text" id="form1" [(ngModel)]="email"  class="form-control" mdbActive />
                                         <label for="form3">Email</label>
                                     </div>
                                     <div class="md-form">
-                                        <input type="text" id="form3" [(ngModel)]="fname"  class="form-control" mdbActive />
+                                        <input type="text" id="form2" [(ngModel)]="fname"  class="form-control" mdbActive />
                                         <label for="form3">First Name</label>
                                     </div>
                                     <div class="md-form">
@@ -45,15 +45,16 @@
                                         <label for="form3">Last Name</label>
                                     </div>
                                     <div class="md-form">
-                                     <input type="password" id="form2" [(ngModel)]="pass" class="form-control" mdbActive  />
+                                     <input type="password" id="form4" [(ngModel)]="pass" class="form-control" mdbActive  />
                                         <label for="form2">Password</label>
                                     </div>
                                     <div class="md-form">
-                                        <input type="text" id="form2" [(ngModel)]="comments" class="form-control" mdbActive  />
-                                        <label for="form2">Any additional comments?</label>
+                                        <input type="text" id="form5" [(ngModel)]="tname" class="form-control" mdbActive  />
+                                        <label for="form2">Truck Name</label>
                                     </div>
                                     <div class="text-center">
-                                        <button class="btn peach-gradient waves-light" mdbRippleRadius (click)="login()">Send</button>
+                                        <button class="btn btn-outline-primary waves-light" mdbRippleRadius routerLink="/login">Go Back</button>
+                                        <button class="btn btn-solid peach-gradient waves-light" mdbRippleRadius (click)="sendRegistrationEmail()">Send</button>
                                         <hr>
                                     </div>
                                   </div>
@@ -65,5 +66,26 @@
                 </div>
             </div>
     </section>
+    <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="heading lead">Email Sent</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i> 
+                        <p>Congratulations! You're on your way to enhancing the way you do business. We will review your information and get back to you as soon as possible!</p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a class="btn btn-secondary" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Okay</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <!--Main Navigation-->

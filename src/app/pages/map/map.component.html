@@ -1,7 +1,7 @@
 
 <div id="content">
-    <div class="loader" >
-        <p>Finding trucks near you...</p>
+    <div class="loader" *ngIf="loading">
+        <p>Finding trucks near you</p>
     </div>
   <div class="search">
     <input #query type="text" placeholder="Food truck name..." class="form-control-update controls" (input)="onKey($event)" />
@@ -18,7 +18,7 @@
       (markerClick)="clickedMarker(m.label, i)"
       [latitude]="m.lat"
       [longitude]="m.lng"
-      [label]="m.label"
+      [label]="m.truckName"
       [iconUrl]="m.icon"
       >
       <agm-info-window>
