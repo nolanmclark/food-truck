@@ -16,7 +16,7 @@ export class AuthService {
    login(email, password) {
       return new Promise((resolve, err) => {
         let head = new Headers({ 'Content-Type': 'application/json' });
-        this.http.post(`${this.apiRoot}/auth`, JSON.stringify({email: email, pw: password}))
+        this.http.post(`${this.apiRoot}/auth`, {"email": email, "pw": password})
           .subscribe((res: Response) => {
             if(res.status === 200) {
               let body = JSON.parse(res['_body']);
