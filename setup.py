@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name="FoodTruck",
-    version="1.4.1",
+    version="1.4.8",
 
     author="VSGenius",
     author_email="caseyschmitz@unomaha.edu",

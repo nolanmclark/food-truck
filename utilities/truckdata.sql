@@ -34,3 +34,14 @@ create table menus (
 	primary key (mid),
 	foreign key (tid) references trucks(tid)
 ) engine=innodb;
+create table messages (
+    tid int,
+    mid int not null auto_increment,
+    cntc_name varchar(60) not null,
+    cntc_email varchar(320) not null,
+    cntc_phone varchar(20) not null,
+    msg varchar(256),
+    subm_dt datetime,
+    primary key (mid),
+    foreigh key (tid) references trucks(tid)
+) engine=innodb;

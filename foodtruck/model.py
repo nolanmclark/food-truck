@@ -1,25 +1,33 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, join
 from sqlalchemy.orm import column_property
-from sqlalchemy.dialects.mysql import TINYINT
+from sqlalchemy.dialects.mysql import TINYINT, DATETIME
 from passlib.hash import bcrypt
+import hashlib
+import time
+from datetime import datetime
 from foodtruck.database import Base
 
 class Trucks (Base):
 	__tablename__ = 'trucks'
 	tid = Column(Integer, primary_key=True, autoincrement=True)
+	secret = Column(String(32))
 	name = Column(String(100))
 	email = Column(String(320))
 	
 	def __init__(self, name, email):
 		self.name = name
 		self.email = email
+		hash = hashlib.sha1()
+		hash.update(str(time.time()).encode('utf-8'))
+		self.secret = hash.hexdigest()[:32]
 
 	def __repr__(self):
-		return '<tid: {}, name: {}, email: {}>'.format(self.tid, self.name, self.email)
+		return '<tid: {}, secret: {}, name: {}, email: {}>'.format(self.tid, self.secret, self.name, self.email)
 
 	def asdict(self):
 		return  {
 		'tid': self.tid,
+		'secret': self.secret,
 		'name': self.name,
 		'email': self.email
 	}
@@ -88,22 +96,25 @@ class Truck_Locs (Base):
 class Menus (Base):
 	__tablename__ = 'menus'
 	mid = Column(Integer, primary_key=True, autoincrement=True)
+	active = Column(Integer)
 	tid = Column(Integer, ForeignKey('trucks.tid'))
 	menu_img_url = Column(String(100)) 
 	
-	def __init__(self, tid, menu_img_url):
+	def __init__(self, tid, menu_img_url, active=0):
+		self.active = active
 		self.tid = tid
 		self.menu_img_url = menu_img_url
 		
 	def __str__(self):
-		return 'mid: {}, tid: {}, menu_img_url: {}' \
-		.format(self.mid, self.tid, self.menu_img_url)
+		return 'mid: {}, tid: {}, menu_img_url: {}, active: {}' \
+		.format(self.mid, self.tid, self.menu_img_url, self.active)
 		
 	def asdict(self):
 		return {
 	'mid': self.mid,
 	'tid': self.tid,
-	'menu_img_url': self.menu_img_url
+	'menu_img_url': self.menu_img_url,
+	'active': self.active
 	}
 
 	
@@ -128,7 +139,19 @@ class Menu_Items (Base):
 	def __str__(self):
 		return 'iid: {}, mid: {}, category: {}, item: {}, inv: {}, descr: {}, price: {}' \
 			.format(self.iid, self.mid, self.category, self.inv, self.descr, self.price)
-	
+
+
+	def asitem(self):
+		return {
+			'iid': self.iid,
+			'category': self.category,
+			'item': self.item,
+			'inv': self.inv,
+			'descr': self.descr,
+			'price': "%.2f" % self.price
+			}	
+
+		
 	def asdict(self):
 		return {
 			'iid': self.iid,
@@ -137,10 +160,44 @@ class Menu_Items (Base):
 			'item': self.item,
 			'inv': self.inv,
 			'descr': self.descr,
-			'price': self.price
+			'price': "%.2f" % self.price
 			}	
 
 
+class Messages (Base):
+	__tablename__ = 'messages'
+	mid = Column(Integer, primary_key=True, autoincrement=True)
+	tid = Column(Integer, ForeignKey('trucks.tid'))
+	cntc_name = Column(String(60))
+	cntc_email = Column(String(320))
+	cntc_phone = Column(String(20))
+	msg = Column(String(256))
+	subm_dt = Column(DATETIME)
+
+	def __init__(self, tid, cntc_name, cntc_email, cntc_phone, msg):
+		self.tid = tid
+		self.cntc_name = cntc_name
+		self.cntc_email = cntc_email
+		self.cntc_phone = cntc_phone
+		self.msg = msg
+		self.subm_dt = datetime.utcnow()
+
+	def __str__(self):
+		return 'mid: {}, tid: {}, cntc_name: {}, cntc_email: {}, cntc_phone: {}, msg: {}, subm_dt: {}' \
+		.format(self.mid, self.tid, self.cntc_name, self.cntc_email, self.cntc_phone, self.msg, self.subm_dt)
+		
+	def asdict(self):
+		return {
+	'mid': self.mid,
+	'tid': self.tid,
+	'cntc_name': self.cntc_name,
+	'cntc_email': self.cntc_email,
+	'cntc_phone': self.cntc_phone,
+	'msg': self.msg,
+	'subm_dt': self.subm_dt.strftime('%Y-%m-%d %H:%M:%S')
+	}
+
+	
 truck_location = join(Trucks, Truck_Locs)
 class Truck_Location(Base):
 	__table__ = truck_location

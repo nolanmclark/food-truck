@@ -1,6 +1,8 @@
 import os
 from flask import Flask, Response, request, current_app, jsonify
 from flask_jwt import JWT, jwt_required, current_identity
+from flask_cors import CORS
+from flask_mail import Mail, Message
 from werkzeug.security import safe_str_cmp
 from datetime import datetime
 import logging
@@ -33,6 +35,7 @@ app.config['SECRET_KEY'] = 'super-secret'
 app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
 app.config['JWT_AUTH_PASSWORD_KEY'] = 'pw'
 jwt = JWT(app, authenticate, identity)
+mail = Mail(app)
 
 
 @jwt.jwt_payload_handler
@@ -55,19 +58,29 @@ def index():
     logger.info("[%s] - %s" % (request.method, request.path))
     return Response(json.dumps(dict(current_identity)))
 
-'''
+"""
 @app.route('/register', methods=['POST'])
 def register():
     # consider only allowing foodtruck administrators to create new trucks
-    # trucks can then have one primary email/pw or
-    # trucks also have a 'secret' field that trucks admins can share with
+    # trucks have a 'secret' field that truck admins can share with
     # secondary users when they create their account for the truck
     logger.info("[%s] - %s" % (request.method, request.path))
     try:
         req = request.get_json()
         valid = functions.register(req)
     return Response(json.dumps({'status': valid})
-'''
+"""
+
+@app.route('/register', methods=['POST'])
+def register():
+    logger.info("[%s] - %s" % (request.method, request.path))
+    req = request.get_json()
+    msg = Message('New Truck Request - %s' % req['truck_name'],
+        sender='admin@vs-genius.ddns.net', recipients=['vsg.fudtruck@gmail.com'])
+    msg.body = "New truck request from %s (%s): %s." % (req['name'], req['email'], req['truck_name'])
+    mail.send(msg)
+    return Response(json.dumps({'status': 'sent'}))
+
 
 @app.route('/trucks', methods=['GET'])
 def all_trucks():
@@ -93,9 +106,52 @@ def all_menus():
     return Response(functions.all_menus())
 
 
+@app.route('/menus/<tid>', methods=['GET'])
+def menu(tid):
+    logger.info("[%s] - %s" % (request.method, request.path))
+    return Response(functions.menu(tid)) 
+
+
+@app.route('/messages/<tid>', methods=['GET'])
+def messages(tid):
+    logger.info("[%s] - %s" % (request.method, request.path))
+    return Response(functions.all_messages(tid))
+
+
+@app.route('/messages/delete/<mid>', methods=['GET'])
+@jwt_required()
+def delete_message(mid):
+    logger.info("[%s] - %s" % (request.method, request.path))
+    res = functions.delete_message(mid)
+
+    if res == 1:
+        logger.info('deleted mid=%s', mid)
+        msg = 'success'
+    else:
+        msg = 'error'
+
+    return Response(json.dumps({'status': msg}))
+
+
+@app.route('/contact', methods=['POST'])
+def send_message():
+    logger.info("[%s] - %s" % (request.method, request.path))
+    req = request.get_json()
+    logger.debug(req)
+    res = functions.send_message(req)
+    if res != -1:
+        logger.info('added mid=%s', res)
+        msg = 'success'
+    else:
+        msg = 'error'
+
+    return Response(json.dumps({'status': msg}))
+
+
 @app.after_request
 def after_request(response):
     response.headers['Content-Type'] = 'application/json'
+    response.headers['Access-Control-Allow-Headers'] = 'access-control-allow-origin,content-type'
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 

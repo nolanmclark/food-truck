@@ -10,14 +10,18 @@ def build():
 		sys.exit(1)
 		
 	menus = []
-	menus.append(Menus(truck_ids[0], 'testmenu.com'))
-	menus.append(Menus(truck_ids[1], 'realgoodfood.com'))
-	menus.append(Menus(truck_ids[2], 'fudtrucc.com'))
-	menus.append(Menus(truck_ids[3], 'snaccs.com'))
-	menus.append(Menus(truck_ids[4], 'hooraytesturlwebsite.com'))
-	menus.append(Menus(truck_ids[5], 'plsbuyfood.com'))
-	menus.append(Menus(truck_ids[6], 'fudtruccccccccccccc.com'))
-	menus.append(Menus(truck_ids[7], 'grassEatnSzn.com'))
+	menus.append(Menus(truck_ids[0], 'activemenu.com', 1))
+	menus.append(Menus(truck_ids[0], 'inactivemenu.com', 0))
+	menus.append(Menus(truck_ids[1], 'realgoodfood.com', 1))
+	menus.append(Menus(truck_ids[2], 'fudtrucc.com', 1))
+	menus.append(Menus(truck_ids[3], 'snaccs.com', 1))
+	menus.append(Menus(truck_ids[4], 'hooraytesturlwebsite.com', 1))
+	menus.append(Menus(truck_ids[5], 'plsbuyfood.com', 1))
+	menus.append(Menus(truck_ids[6], 'fudtruccccccccccccc.com', 1))
+	menus.append(Menus(truck_ids[7], 'grassEatnSzn.com', 1))
+	menus.append(Menus(truck_ids[8], 'urlsnstuff.com', 1))
+	menus.append(Menus(truck_ids[9], 'backupterry.com', 1))
+
 	
 	Session.bulk_save_objects(menus)
 	Session.commit()
