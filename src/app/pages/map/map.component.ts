@@ -236,7 +236,7 @@ public name: string;
       this.formModal.show();
   }
 
-  contact(id, cntc_name, email_addr, phone, subject, message) {
+  contact(tid, cntc_name, email_addr, phone, subject, message) {
     console.log("/contact POST");
     let url = `${this.apiRoot}/contact`;
     let headers = new Headers();
@@ -256,17 +256,17 @@ public name: string;
         let body = JSON.parse(res['_body']);
         let stat = body.status;
         if(stat === 'success'){
-          resolve('success');
+          console.log('success');
         }
       } else {
-        alert("Error, contact administrators.")
+        alert("Error, contact administrators.");
       }
       this.cntc_name = '';
       this.email = '';
       this.phone = '';
       this.subject = '';
       this.message = '';
-    );
+    });
   }
 
 
