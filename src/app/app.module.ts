@@ -13,6 +13,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LocationService} from './services/location/location.service';
 import { AuthService } from './services/auth/auth.service';
+import { ContactService} from './services/contact/contact.service';
 import { HttpModule} from '@angular/http';
 import { LoginComponent } from './pages/login/login.component';
 import { NgModel } from '@angular/forms';
@@ -48,7 +49,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [LocationService, AuthService],
+  providers: [LocationService, AuthService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

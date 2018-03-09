@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { ContactService } from '../../services/contact/contact.service';
 import {LocationService} from '../../services/location/location.service';
 import {AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
@@ -21,7 +22,7 @@ public name: string;
   public query: any;
   menu: any;
   currentTruckName: any;
-  currentTruckId: any;
+  currentTruckID: any;
 
   public style: any = [
     {
@@ -144,6 +145,12 @@ public name: string;
   markers: any[];
   loading: boolean;
 
+  cntc_name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+
   truckList: any[] = [
     {
       truckName: 'Localmotive',
@@ -161,8 +168,13 @@ public name: string;
     }
   ];
 
-  constructor(private http: Http, private locService: LocationService) {
+  constructor(private http: Http, private locService: LocationService, private contactService: ContactService) {
     this.loading = true;
+    this.cntc_name = '';
+    this.email = '';
+    this.phone = '';
+    this.subject = '';
+    this.message = '';
   }
 
   ngOnInit() {
@@ -220,20 +232,42 @@ public name: string;
 
   openContact(id, name) {
       this.currentTruckName = name;
-      this.currentTruckId = id;
-      this.formModal.show()
+      this.currentTruckID = id;
+      this.formModal.show();
   }
 
-  sendForm(id, fname, email, subject, message) {
-    this.http.post(`${this.apiRoot}/mail/send`, JSON.stringify({tid: id, email_addr: email, name: name, subject: `Contact From ${fname} from Füdtruck`, body: message})).subscribe(res => {
-        if(res.status === 200) {
-            this.successModal.show();
-          } else {
-            alert("Error sending message");
-          }
-    });
+  contact(id, cntc_name, email_addr, phone, subject, message) {
+    console.log("/contact POST");
+    let url = `${this.apiRoot}/contact`;
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    let ops = new RequestOptions();
+    ops.headers = headers;
+    let data = {
+      "tid": tid,
+      "cntc_name": cntc_name,
+      "email_addr": email_addr,
+      "phone": phone,
+      "subject": subject,
+      "message": message
+    };
+    this.http.post(url, data).subscribe((res: Response) => {
+      if(res.status === 200) {
+        let body = JSON.parse(res['_body']);
+        let stat = body.status;
+        if(stat === 'success'){
+          resolve('success');
+        }
+      } else {
+        alert("Error, contact administrators.")
+      }
+      this.cntc_name = '';
+      this.email = '';
+      this.phone = '';
+      this.subject = '';
+      this.message = '';
+    );
   }
-
 
 
   //TODO: Pull list of available and open trucks from DB,
