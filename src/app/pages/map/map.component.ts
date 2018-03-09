@@ -234,16 +234,23 @@ public name: string;
       this.formModal.show();
   }
 
-  sendForm(id, fname, email, subject, message) {
-    this.http.post(`${this.apiRoot}/mail/send`, JSON.stringify({tid: id, email_addr: email, name: name, subject: `Contact From ${fname} from Füdtruck`, body: message})).subscribe(res => {
-        if(res.status === 200) {
-            this.successModal.show();
-          } else {
-            alert("Error sending message");
-          }
-    });
+  contact(id, cntc_name, email_addr, subject, message) {
+    if(cntc_name !== '' && email_addr !== '' && subject !== '' && message !== '') {
+      this.contactService.contact(cntc_name, email_addr, subject, message, id).then((res) => {
+        if(res === 'success') {
+          console.log('sent');
+          this.formModal.hide();
+          this.successModal.show();
+        } else {
+          return res;
+        }
+      }).catch((err) => {
+        alert("Caught Error");
+      });
+    } else {
+        alert("Failed to send.");
+      }
   }
-
 
 
   //TODO: Pull list of available and open trucks from DB,
@@ -323,30 +330,6 @@ public name: string;
          });
      };
    });
- }
-
- selectTruck(id) {
-   this.currentTruckID = id;
-   console.log(this.currentTruckID);
- }
-
- contact() {
-   if(this.cntc_name !== '' && this.email !== '' && this.subject !== '' && this.message !== '') {
-     this.contactService.contact(this.cntc_name, this.email, this.subject, this.message, this.currentTruckID).then((res) => {
-       if(res === 'success') {
-         console.log('sent');
-         // close modal
-         this.successModal.show();
-         //this.router.navigateByUrl('/truck-client');
-       } else {
-         return res;
-       }
-     }).catch((err) => {
-       alert("Caught Error");
-     });
-   } else {
-       alert("Failed to send.");
-     }
  }
 
  onKey(e) {

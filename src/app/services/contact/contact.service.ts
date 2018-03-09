@@ -18,7 +18,6 @@ export class ContactService {
         this.http.post(`${this.apiRoot}/contact`, {"name": name, "email": email, "subj": subj, "message": message, "tid": tid})
           .subscribe((res: Response) => {
             if(res.status === 200) {
-              console.log(res);
               let body = JSON.parse(res['_body']);
               let stat = body.status;
               if(stat === 'success'){
