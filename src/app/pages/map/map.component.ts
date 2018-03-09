@@ -248,7 +248,6 @@ public name: string;
       "cntc_name": cntc_name,
       "email_addr": email_addr,
       "phone": phone,
-      "subject": subject,
       "message": message
     };
     this.http.post(url, data).subscribe((res: Response) => {
@@ -257,6 +256,8 @@ public name: string;
         let stat = body.status;
         if(stat === 'success'){
           console.log('success');
+          this.formModal.hide();
+          this.successModal.show();
         }
       } else {
         alert("Error, contact administrators.");
@@ -264,7 +265,6 @@ public name: string;
       this.cntc_name = '';
       this.email = '';
       this.phone = '';
-      this.subject = '';
       this.message = '';
     });
   }
