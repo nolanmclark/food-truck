@@ -13,6 +13,8 @@ import { AfterViewChecked } from '@angular/core';
 export class MapComponent implements OnInit, AfterViewChecked {
 
 @ViewChild('content') public contentModal;
+@ViewChild('style') public successModal;
+@ViewChild('form') public formModal;
 public name: string;
 
   public map: any = { lat: 41.2524, lng: -95.9980};
@@ -224,8 +226,25 @@ public name: string;
         this.contentModal.show();
         console.log(this.menu);
     });
-
   }
+
+  openContact(id, name) {
+      this.currentTruckName = name;
+      this.currentTruckId = id;
+      this.formModal.show()
+  }
+
+  sendForm(id, fname, email, subject, message) {
+    this.http.post(`${this.apiRoot}/mail/send`, JSON.stringify({tid: id, email_addr: email, name: name, subject: `Contact From ${fname} from Füdtruck`, body: message})).subscribe(res => {
+        if(res.status === 200) {
+            this.successModal.show();
+          } else {
+            alert("Error sending message");
+          }
+    });
+  }
+
+
 
   //TODO: Pull list of available and open trucks from DB,
   // create markers for trucks on map, bind custom markers

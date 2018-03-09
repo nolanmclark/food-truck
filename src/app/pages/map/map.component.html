@@ -37,7 +37,11 @@
       </div>
       <div class="icons">
         <img class="i" src="./assets/images/menu.svg" (click)="openMenu(truck.tid, truck.name)"/>
+<<<<<<< HEAD
         <img class="i" src="./assets/images/contact.svg" (click)="form.show(); selectTruck(truck.tid)" />
+=======
+        <img class="i" src="./assets/images/contact.svg" (click)="openContact(truck.tid, truck.name)" />
+>>>>>>> 5fa63878d6c1606d617ee60f81be0d842bfe220c
       </div>
     </li>
   </ul>
@@ -85,6 +89,7 @@
               <!--Body-->
               <div class="modal-body mb-0">
                   <div class="md-form form-sm">
+<<<<<<< HEAD
                       <i class="fa fa-pencil prefix"></i>
                       <input mdbActive type="text" id="form19" [(ngModel)]="cntc_name" class="form-control">
                       <label for="form19">Your name</label>
@@ -94,22 +99,47 @@
                       <i class="fa fa-envelope prefix"></i>
                       <input mdbActive type="text" id="form20" [(ngModel)]="email" class="form-control">
                       <label for="form20">Your email</label>
+=======
+                      <i class="fa fa-envelope prefix"></i>
+                      <input mdbActive type="text" id="fname" [(ngModel)]="fname" class="form-control">
+                      <label for="fname">Your name</label>
+                  </div>
+
+                  <div class="md-form form-sm">
+                      <i class="fa fa-lock prefix"></i>
+                      <input mdbActive type="password" id="email" [(ngModel)]="email" class="form-control">
+                      <label for="email">Your email</label>
+>>>>>>> 5fa63878d6c1606d617ee60f81be0d842bfe220c
                   </div>
 
                   <div class="md-form form-sm">
                       <i class="fa fa-tag prefix"></i>
+<<<<<<< HEAD
                       <input mdbActive type="text" id="form21" [(ngModel)]="subject" class="form-control">
                       <label for="form21">Subject</label>
+=======
+                      <input mdbActive type="text" id="subject" [(ngModel)]="subject" class="form-control">
+                      <label for="subject">Subject</label>
+>>>>>>> 5fa63878d6c1606d617ee60f81be0d842bfe220c
                   </div>
 
                   <div class="md-form form-sm">
                       <i class="fa fa-pencil prefix"></i>
+<<<<<<< HEAD
                       <textarea mdbActive type="text" id="form8" [(ngModel)]="message" class="md-textarea mb-0"></textarea>
                       <label for="form8">Your message</label>
                   </div>
 
                   <div class="text-center mt-1-half">
                       <button class="btn btn-info mb-2 waves-light" mdbRippleRadius (click)="contact()">Send <i class="fa fa-send ml-1"></i></button>
+=======
+                      <textarea mdbActive type="text" id="message" [(ngModel)]="message" class="md-textarea mb-0"></textarea>
+                      <label for="message">Your message</label>
+                  </div>
+
+                  <div class="text-center mt-1-half">
+                      <button class="btn btn-info mb-2 waves-light" mdbRippleRadius (click)="sendForm(currentTruckId, fname, email, subject, message)">Send <i class="fa fa-send ml-1"></i></button>
+>>>>>>> 5fa63878d6c1606d617ee60f81be0d842bfe220c
                   </div>
 
               </div>
@@ -117,5 +147,26 @@
           <!--/.Content-->
       </div>
   </div>
+  <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="heading lead">Email Sent</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i> 
+                        <p>Message sent! </p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a class="btn btn-secondary" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Okay</a>
+                </div>
+            </div>
+        </div>
+    </div>
   <!--Modal: Contact form-->
   </div>
