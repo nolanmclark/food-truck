@@ -230,8 +230,8 @@ public name: string;
 
   openContact(id, name) {
       this.currentTruckName = name;
-      this.currentTruckId = id;
-      this.formModal.show()
+      this.currentTruckID = id;
+      this.formModal.show();
   }
 
   sendForm(id, fname, email, subject, message) {
@@ -336,7 +336,7 @@ public name: string;
        if(res === 'success') {
          console.log('sent');
          // close modal
-         this.success.close();
+         this.successModal.show();
          //this.router.navigateByUrl('/truck-client');
        } else {
          return res;
