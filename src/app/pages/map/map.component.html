@@ -37,7 +37,7 @@
       </div>
       <div class="icons">
         <img class="i" src="./assets/images/menu.svg" (click)="openMenu(truck.tid, truck.name)"/>
-        <img class="i" src="./assets/images/contact.svg" (click)="form.show()" />
+        <img class="i" src="./assets/images/contact.svg" (click)="form.show(); selectTruck(truck.tid)" />
       </div>
     </li>
   </ul>
@@ -85,31 +85,31 @@
               <!--Body-->
               <div class="modal-body mb-0">
                   <div class="md-form form-sm">
-                      <i class="fa fa-envelope prefix"></i>
-                      <input mdbActive type="text" id="form19" class="form-control">
+                      <i class="fa fa-pencil prefix"></i>
+                      <input mdbActive type="text" id="form19" [(ngModel)]="cntc_name" class="form-control">
                       <label for="form19">Your name</label>
                   </div>
 
                   <div class="md-form form-sm">
-                      <i class="fa fa-lock prefix"></i>
-                      <input mdbActive type="password" id="form20" class="form-control">
+                      <i class="fa fa-envelope prefix"></i>
+                      <input mdbActive type="text" id="form20" [(ngModel)]="email" class="form-control">
                       <label for="form20">Your email</label>
                   </div>
 
                   <div class="md-form form-sm">
                       <i class="fa fa-tag prefix"></i>
-                      <input mdbActive type="text" id="form21" class="form-control">
+                      <input mdbActive type="text" id="form21" [(ngModel)]="subject" class="form-control">
                       <label for="form21">Subject</label>
                   </div>
 
                   <div class="md-form form-sm">
                       <i class="fa fa-pencil prefix"></i>
-                      <textarea mdbActive type="text" id="form8" class="md-textarea mb-0"></textarea>
+                      <textarea mdbActive type="text" id="form8" [(ngModel)]="message" class="md-textarea mb-0"></textarea>
                       <label for="form8">Your message</label>
                   </div>
 
                   <div class="text-center mt-1-half">
-                      <button class="btn btn-info mb-2 waves-light" mdbRippleRadius>Send <i class="fa fa-send ml-1"></i></button>
+                      <button class="btn btn-info mb-2 waves-light" mdbRippleRadius (click)="contact()">Send <i class="fa fa-send ml-1"></i></button>
                   </div>
 
               </div>

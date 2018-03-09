@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { ContactService } from '../../services/contact/contact.service';
 import {LocationService} from '../../services/location/location.service';
 import {AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
@@ -19,6 +20,7 @@ public name: string;
   public query: any;
   menu: any;
   currentTruckName: any;
+  currentTruckID: any;
 
   public style: any = [
     {
@@ -141,6 +143,11 @@ public name: string;
   markers: any[];
   loading: boolean;
 
+  cntc_name: string;
+  email: string;
+  subject: string;
+  message: string;
+
   truckList: any[] = [
     {
       truckName: 'Localmotive',
@@ -158,8 +165,12 @@ public name: string;
     }
   ];
 
-  constructor(private http: Http, private locService: LocationService) {
+  constructor(private http: Http, private locService: LocationService, private contactService: ContactService) {
     this.loading = true;
+    this.cntc_name = '';
+    this.email = '';
+    this.subject = '';
+    this.message = '';
   }
 
   ngOnInit() {
@@ -293,6 +304,30 @@ public name: string;
          });
      };
    });
+ }
+
+ selectTruck(id) {
+   this.currentTruckID = id;
+   console.log(this.currentTruckID);
+ }
+
+ contact() {
+   if(this.cntc_name !== '' && this.email !== '' && this.subject !== '' && this.message !== '') {
+     this.contactService.contact(this.cntc_name, this.email, this.subject, this.message, this.currentTruckID).then((res) => {
+       if(res === 'success') {
+         console.log('sent');
+         // close modal
+         this.success.close();
+         //this.router.navigateByUrl('/truck-client');
+       } else {
+         return res;
+       }
+     }).catch((err) => {
+       alert("Caught Error");
+     });
+   } else {
+       alert("Failed to send.");
+     }
  }
 
  onKey(e) {
