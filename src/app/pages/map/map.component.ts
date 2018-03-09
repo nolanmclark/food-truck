@@ -147,6 +147,7 @@ public name: string;
 
   cntc_name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
 
@@ -171,6 +172,7 @@ public name: string;
     this.loading = true;
     this.cntc_name = '';
     this.email = '';
+    this.phone = '';
     this.subject = '';
     this.message = '';
   }
@@ -234,22 +236,37 @@ public name: string;
       this.formModal.show();
   }
 
-  contact(id, cntc_name, email_addr, subject, message) {
-    if(cntc_name !== '' && email_addr !== '' && subject !== '' && message !== '') {
-      this.contactService.contact(cntc_name, email_addr, subject, message, id).then((res) => {
-        if(res === 'success') {
-          console.log('sent');
-          this.formModal.hide();
-          this.successModal.show();
-        } else {
-          return res;
+  contact(id, cntc_name, email_addr, phone, subject, message) {
+    console.log("/contact POST");
+    let url = `${this.apiRoot}/contact`;
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    let ops = new RequestOptions();
+    ops.headers = headers;
+    let data = {
+      "tid": tid,
+      "cntc_name": cntc_name,
+      "email_addr": email_addr,
+      "phone": phone,
+      "subject": subject,
+      "message": message
+    };
+    this.http.post(url, data).subscribe((res: Response) => {
+      if(res.status === 200) {
+        let body = JSON.parse(res['_body']);
+        let stat = body.status;
+        if(stat === 'success'){
+          resolve('success');
         }
-      }).catch((err) => {
-        alert("Caught Error");
-      });
-    } else {
-        alert("Failed to send.");
+      } else {
+        alert("Error, contact administrators.")
       }
+      this.cntc_name = '';
+      this.email = '';
+      this.phone = '';
+      this.subject = '';
+      this.message = '';
+    );
   }
 
 

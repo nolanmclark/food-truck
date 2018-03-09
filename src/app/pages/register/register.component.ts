@@ -17,10 +17,10 @@ export class RegisterComponent  {
     email: string = "";
     lname: string = "";
     tname: string = "";
-    pass: string = "";
+    //pass: string = "";
     apiRoot: string = 'https://vs-genius.ddns.net/api/foodtruck';
 
-  constructor(public http: Http) { 
+  constructor(public http: Http, private router: Router) {
 
   }
 
@@ -35,7 +35,7 @@ export class RegisterComponent  {
       alert("Truck Name field left empty, it is required.");
     } else {
       // success
-      this.http.post(`${this.apiRoot}/mail/send`, JSON.stringify({email_addr: this.email, name: `${this.fname} ${this.lname}`, truck_name: this.tname, subject: "Truck Registration", body: "New truck to be registered."}))
+      this.http.post(`${this.apiRoot}/register`, {"email": this.email, "name": `${this.fname} ${this.lname}`, "truck_name": this.tname})
       .subscribe(res => {
         if(res.status === 200) {
           this.contentModal.show();
@@ -44,5 +44,10 @@ export class RegisterComponent  {
         }
       })
     }
+  }
+
+  go() {
+    this.contentModal.hide();
+    this.router.navigateByUrl('/client-home');
   }
 }

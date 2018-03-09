@@ -85,31 +85,37 @@
               <!--Body-->
               <div class="modal-body mb-0">
                   <div class="md-form form-sm">
-                      <i class="fa fa-pencil prefix"></i>
-                      <input mdbActive type="text" id="cntc_name" [(ngModel)]="cntc_name" class="form-control">
-                      <label for="cntc_name">Your name</label>
+                      <i class="fa fa-user-circle prefix"></i>
+                      <input mdbActive type="text" id="cntc_name" [(ngModel)]="cntc_name" class="form-control" required>
+                      <label for="cntc_name">Name</label>
                   </div>
 
                   <div class="md-form form-sm">
-                      <i class="fa fa-envelope prefix"></i>
-                      <input mdbActive type="text" id="email_addr" [(ngModel)]="email" class="form-control">
-                      <label for="email_addr">Your email</label>
+                      <i class="fa fa-at prefix"></i>
+                      <input mdbActive type="text" id="email_addr" [(ngModel)]="email" class="form-control" required>
+                      <label for="email_addr">Email Address</label>
+                  </div>
+
+                  <div class="md-form form-sm">
+                      <i class="fa fa-mobile prefix"></i>
+                      <input mdbActive type="text" id="phone" [(ngModel)]="phone" class="form-control" required>
+                      <label for="phone">Phone #</label>
                   </div>
 
                   <div class="md-form form-sm">
                       <i class="fa fa-tag prefix"></i>
-                      <input mdbActive type="text" id="subject" [(ngModel)]="subject" class="form-control">
+                      <input mdbActive type="text" id="subject" [(ngModel)]="subject" class="form-control" required>
                       <label for="subject">Subject</label>
                   </div>
 
                   <div class="md-form form-sm">
                       <i class="fa fa-pencil prefix"></i>
                       <textarea mdbActive type="text" id="message" [(ngModel)]="message" class="md-textarea mb-0"></textarea>
-                      <label for="message">Your message</label>
+                      <label for="message">Message</label>
                   </div>
 
                   <div class="text-center mt-1-half">
-                      <button class="btn btn-info mb-2 waves-light" mdbRippleRadius (click)="contact(currentTruckId, cntc_name, email, subject, message)">Send <i class="fa fa-send ml-1"></i></button>
+                      <button class="btn btn-info mb-2 waves-light" mdbRippleRadius (click)="contact(currentTruckID, cntc_name, email, phone, subject, message)">Send <i class="fa fa-send ml-1"></i></button>
                   </div>
 
               </div>

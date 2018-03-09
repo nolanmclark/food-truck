@@ -12,10 +12,10 @@ export class ContactService {
 
    }
 
-   contact(name, email, subj, message, tid) {
+   contact(name, email, phone, subj, message, tid) {
       return new Promise((resolve, err) => {
         let head = new Headers({ 'Content-Type': 'application/json' });
-        this.http.post(`${this.apiRoot}/contact`, {"name": name, "email": email, "subj": subj, "message": message, "tid": tid})
+        this.http.post(`${this.apiRoot}/contact`, {"name": name, "email": email, "phone": phone, "subj": subj, "message": message, "tid": tid})
           .subscribe((res: Response) => {
             if(res.status === 200) {
               let body = JSON.parse(res['_body']);
