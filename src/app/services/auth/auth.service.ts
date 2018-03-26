@@ -57,6 +57,14 @@ export class AuthService {
        localStorage.setItem('id_token', token);
    }
 
+   getSession() {
+     if(localStorage.getItem("id_token") !== null){
+       return localStorage.getItem("id_token");
+     } else {
+       return null;
+     }
+   }
+
    logout() {
        localStorage.removeItem("id_token");
        localStorage.removeItem("expires_at");

@@ -35,7 +35,7 @@ export class RegisterComponent  {
       alert("Truck Name field left empty, it is required.");
     } else {
       // success
-      this.http.post(`${this.apiRoot}/register`, {"email": this.email, "name": `${this.fname} ${this.lname}`, "truck_name": this.tname})
+      this.http.post(`${this.apiRoot}/register/truck`, {"email": this.email, "name": `${this.fname} ${this.lname}`, "truck_name": this.tname})
       .subscribe(res => {
         if(res.status === 200) {
           this.contentModal.show();

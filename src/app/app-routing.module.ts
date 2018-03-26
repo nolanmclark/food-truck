@@ -8,6 +8,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import {LoginComponent} from './pages/login/login.component';
 import {TruckClientComponent} from './pages/truck-client/truck-client.component';
 import { RegisterComponent } from './pages/register/register.component';
+import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
 
 const appRoutes: Routes = [
   {
@@ -30,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
   },
   {
     path: 'client-home',
