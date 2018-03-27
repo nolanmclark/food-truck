@@ -1,3 +1,210 @@
-.dark {
-    background-color: #ecac00;
+$primary: #ececec;
+$secondary: #1C2331;
+
+.wrapper {
+        display: flex;
+}
+
+.title {
+    font-family: inherit;
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    color: #32455d;
+    text-align: left;
+    justify-self: center;
+    align-self: center;
+}
+
+#sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        height: 100vh;
+        box-shadow: 4px 0 2px rgba(50,50,50,.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 250;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #fff;
+    color: $secondary;
+    transition: all 0.3s;
+}
+.nav li a {
+  border-bottom: 1px solid #ddd;
+}
+.nav li {
+  width: 100%;
+  outline: none;
+}
+.nav-icon {
+  margin-right: 20px;
+  display: inline-flex;
+  padding: 0 5px;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: .9em;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0;
+  padding: 0 10px;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #fff;
+    color: #fff;
+}
+
+#sidebar ul.components {
+    padding: 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    outline: none;
+}
+#sidebar ul li a:hover {
+    color: $secondary;
+    background: #eee;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #32455d;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: $secondary;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+a.download {
+    background: #fff;
+    color: $primary;
+}
+a.article, a.article:hover {
+    background: $secondary !important;
+    color: #fff !important;
+}
+
+#sidebar ul li:first-child a {
+    border-top: 1px solid #ddd;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
 }

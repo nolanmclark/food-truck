@@ -188,7 +188,10 @@ public name: string;
         console.log("DN Exist")
         return await this.getPosition();
       } else {
+        console.log("Updated map with " + this.myLatLng.lat + " " + this.myLatLng.lng);
         this.myLatLng = this.locService.myLatLng;
+        this.map.lat = this.myLatLng.lat;
+        this.map.lng = this.myLatLng.lng;
         console.log("Exists:" + JSON.stringify(this.locService.myLatLng));
       }
   }
@@ -339,6 +342,9 @@ public name: string;
            if(res) {
              this.locService.setLocation(res.coords);
              this.myLatLng = this.locService.myLatLng;
+             this.map.lat = this.myLatLng.lat;
+             this.map.lng = this.myLatLng.lng;
+             console.log("Updated map with " + this.myLatLng.lat + " " + this.myLatLng.lng);
              console.log("should exist");
              resolve('success');
            } else {

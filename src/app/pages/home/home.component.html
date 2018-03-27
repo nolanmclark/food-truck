@@ -9,7 +9,8 @@
                     <a class="nav-link" routerLink="/about">About</a>
                 </li>
                 <li class="nav-item waves-light" mdbRippleRadius>
-                    <a class="nav-link" routerLink="/login">Login</a>
+                    <a class="nav-link" routerLink="/login" *ngIf="!loggedin">Login</a>
+                    <a class="nav-link" routerLink="/login" *ngIf="loggedin">Dashboard</a>
                 </li>
             </ul>
         </links>

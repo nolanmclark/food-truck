@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
           console.log('logged in');
           this.router.navigateByUrl('/truck-client');
         } else {
-          return res;
+          alert(res);
         }
       }).catch((err) => {
         alert("Caught Error");

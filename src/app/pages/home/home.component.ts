@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../../services/location/location.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,18 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  loggedin: any = false;
 
-
-  constructor(private locService: LocationService, private router: Router) {
+  constructor(private authService: AuthService, private locService: LocationService, private router: Router) {
     this.getPosition();
   }
 
   ngOnInit() {
-
+    if(this.authService.isLoggedIn()) {
+      this.loggedin = true;
+    } else {
+      this.loggedin = false;
+    }
   }
 
   goToClientHome() {
