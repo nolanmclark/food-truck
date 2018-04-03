@@ -8,11 +8,18 @@ export class LocationService {
     lat: '',
     lng: ''
   };
+  go: any;
+  tid: any;
+  lastCoords: any = {};
   apiRoot: string = 'https://vs-genius.ddns.net/api/foodtruck';
   searching: boolean;
 
   constructor(public http: Http) { 
     this.searching = false;
+    if(this.searching) {
+
+    }
+    this.getTruckLocation
   }
 
   locDNExist() {
@@ -23,19 +30,48 @@ export class LocationService {
     }
   }
 
-  getTruckLocation(search: boolean, tid) {
+  stillSharing() {
+    return this.searching;
+  }
+
+  startSendingLocation(search: boolean, tid) {
     this.searching = search;
-    while(this.searching) {
-      setTimeout(() => {
-        window.navigator.geolocation.getCurrentPosition((res) => {
-          if(res) {
-            this.setTruckLocation(res.coords, tid)
-          } else {
-            console.log(res);
-          }
-        });
-      }, 30000);
+    console.log("sending location" + search);
+    if(!search) {
+      this.stopSendingLoc();
+    } else {
+      this.getTruckLocation(tid);
     }
+  }
+
+  getTruckLocation(tid) {
+    this.tid = tid;
+    this.lastCoords = {
+      lat: '',
+      lng: ''
+    };
+    
+    this.go = navigator.geolocation.watchPosition((res) => {
+      console.log("INSIDE GEOLOCATOR");
+        if(res) {
+          this.lastCoords = res.coords;
+          this.setTruckLocation(res.coords, 1, tid);
+          console.log("sent location");
+        } else {
+          console.log(res);
+        }
+    });
+  }
+
+  stopSendingLoc() {
+    this.searching = false;
+    navigator.geolocation.clearWatch(this.go);
+    console.log("STOP");
+    this.setTruckLocation(this.lastCoords, 0, this.tid);
+  }
+
+  getLoc(open, tid) {
+
   }
 
   setLocation(loc) {
@@ -44,21 +80,18 @@ export class LocationService {
     this.myLatLng.lng = loc.longitude;
   }
 
-  setTruckLocation(loc, tid) {
+  setTruckLocation(loc, open, tid) {
     // SET LOCATION w TID
     let url = `${this.apiRoot}/location/update`;
     let data = {
       tid: tid,
       lat: loc.latitude,
-      lng: loc.longitude
+      lng: loc.longitude,
+      open: open
     };
     this.http.post(url, data).subscribe((res) => {
         if(res.status === 200) {
-          let body = JSON.parse(res['_body']);
-          let stat = body.status;
-          if(stat === 'success'){
-            console.log("success");
-          }
+          console.log("set truck location success");
         }
     });
   }

@@ -15,10 +15,21 @@
     padding: 0;
     background-color: #fff;
     .top-half {
-        height: 40%;
+        height: 25%;
         margin: 0;
         padding: 0;
         background-color: #ececec;
+    }
+    .bottom-half {
+        height: 75%;
+        margin: 50px;
+        padding: 0;
+        background-color: #fff;
+        h1 {
+            font-size: 1em;
+            font-weight: 600;
+            color: #555;
+        }
     }
 }
 .truck-img img {
@@ -30,10 +41,9 @@
 
 .truck-data {
     position: relative;
-    left: 50%;
     top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+    padding-left: 100px;
     display: inline-flex;
     flex-direction: row;
     .truck-info {
@@ -43,7 +53,7 @@
         transition: ease-in-out all .5s;
         h1 {
             margin: 0;
-            padding: 0;
+            padding: 0 0 5px 0;
             font-size: 1.5em;
             font-weight: 600;
             transition: ease-in-out all .5s;
@@ -51,7 +61,7 @@
         h3 {
             font-size: 1.2em;
             margin: 0;
-            padding: 0;
+            padding: 0 0 5px 0;
             transition: ease-in-out all .5s;
         }
         .truck-links {

@@ -1,6 +1,6 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
   <logo>
-      <a class="logo navbar-brand" href="#">FüdTime</a>
+      <a class="logo navbar-brand" routerLink="['home']">FüdTime</a>
   </logo>
   <links>
       <ul class="navbar-nav ml-auto">
@@ -14,23 +14,26 @@
   <div class="top-half">
     <div class="truck-data">
       <div class="truck-img">
-        <img src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20320716.jpg" />
+        <img [src]="photoUrl" />
       </div>
       <div class="truck-info">
         <h1>{{truckData.name}}</h1>
-        <h3>{{truckData.email}}</h3>
         <div class="truck-links">
           <ul>
             <li><a>Update Menu</a></li>
-            <li><a>Start Sharing Location</a></li>
+            <li *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></li>
+            <li *ngIf="sharing"><a style="color: #f10000" (click)="startSharing(false)">Stop Sharing Location</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
   <div class="bottom-half">
+    <h1>Last Location</h1>
     <div class="map-info">
-      
+      <agm-map [styles]="style" [latitude]="curLoc.lat" [disableDoubleClickZoom]="true" [mapDraggable]="false" [zoomControl]="false" [maxZoom]=13 [minZoom]=13 [longitude]="curLoc.lng" [zoom]="13" style="height: 30vh; padding: 0; margin: 0">
+        <agm-marker [latitude]="curLoc.lat" [longitude]="curLoc.lng" [label]="You"></agm-marker>
+      </agm-map>
     </div>
   </div>
 </div>
