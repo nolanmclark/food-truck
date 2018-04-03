@@ -12,7 +12,7 @@ $secondary: #1C2331;
     margin: 0;
     padding: 0;
     color: #32455d;
-    text-align: left;
+    text-align: center;
     justify-self: center;
     align-self: center;
 }
@@ -22,6 +22,9 @@ $secondary: #1C2331;
         max-width: 250px;
         height: 100vh;
         box-shadow: 4px 0 2px rgba(50,50,50,.1);
+        .sidebar-header {
+            padding: 10px;
+        }
 }
 
 body {
@@ -108,7 +111,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    padding: 10px;
     background: #fff;
     color: #fff;
 }

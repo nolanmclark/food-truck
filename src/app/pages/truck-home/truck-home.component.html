@@ -1,0 +1,36 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
+  <logo>
+      <a class="logo navbar-brand" href="#">FüdTime</a>
+  </logo>
+  <links>
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item waves-light" mdbRippleRadius>
+              <p class="truckIntro">Hello, <strong>{{truckData.name}}</strong>.</p>
+          </li>
+      </ul>
+  </links>
+</mdb-navbar>
+<div class="container">
+  <div class="top-half">
+    <div class="truck-data">
+      <div class="truck-img">
+        <img src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20320716.jpg" />
+      </div>
+      <div class="truck-info">
+        <h1>{{truckData.name}}</h1>
+        <h3>{{truckData.email}}</h3>
+        <div class="truck-links">
+          <ul>
+            <li><a>Update Menu</a></li>
+            <li><a>Start Sharing Location</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-half">
+    <div class="map-info">
+      
+    </div>
+  </div>
+</div>

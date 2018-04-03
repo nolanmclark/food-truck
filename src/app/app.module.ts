@@ -22,6 +22,7 @@ import { TruckClientComponent } from './pages/truck-client/truck-client.componen
 import { KeysPipe } from './keys.pipe';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     KeysPipe,
     RegisterComponent,
     ForgotPasswordComponent,
+    TruckHomeComponent,
   ],
   imports: [
     BrowserModule,

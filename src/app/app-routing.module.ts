@@ -9,6 +9,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {TruckClientComponent} from './pages/truck-client/truck-client.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
+import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
 
 const appRoutes: Routes = [
   {
@@ -27,6 +28,10 @@ const appRoutes: Routes = [
   {
     path: 'truck-client',
     component: TruckClientComponent,
+    children: [
+      {path: '', redirectTo: 'truckHome', pathMatch: 'full'},
+      {path: 'truckHome', component: TruckHomeComponent},
+    ]
   },
   {
     path: 'register',
