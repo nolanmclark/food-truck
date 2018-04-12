@@ -12,7 +12,7 @@
   [zoom]="13"
   [styles]="style"
   style="height: 60vh; padding: 0; margin: 0">
-
+  <agm-direction *ngIf="dir" [renderOptions]="options" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
     <agm-marker
       *ngFor="let m of markers; let i = index"
       (markerClick)="clickedMarker(m.truckName, i)"
@@ -26,12 +26,11 @@
       </agm-info-window>
 
     </agm-marker>
-
   </agm-map>
 
   <ul class="active-trucks make-scrollable">
     <li *ngFor="let truck of truckList | filter : query.value">
-      <div class="truck-name-info">
+      <div class="truck-name-info" (click)="getDirections(truck.lat, truck.lng)">
         <h1>{{truck.name}}</h1>
         <p>Miles from you: {{truck.distanceFrom}}mi</p>
       </div>

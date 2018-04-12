@@ -7,6 +7,7 @@ import { ClientHomeComponent } from './pages/client-home/client-home.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction'; 
 import { AboutComponent } from './pages/about/about.component';
 import { MapComponent } from './pages/map/map.component';
 import { SearchFilterPipe } from './search-filter.pipe';
@@ -48,7 +49,8 @@ import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAqMfCGxfUAMshlsF7_D-oUpcuHMje-JIA'
-    })
+    }),
+    AgmDirectionModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [LocationService, AuthService, ContactService],

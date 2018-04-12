@@ -24,6 +24,10 @@ public name: string;
   currentTruckName: any;
   currentTruckID: any;
 
+  options:any = {
+    suppressMarkers: true
+  };
+
   public style: any = [
     {
         "featureType": "water",
@@ -150,6 +154,7 @@ public name: string;
   phone: string;
   subject: string;
   message: string;
+  dir = undefined;
 
   truckList: any[] = [
     {
@@ -175,6 +180,7 @@ public name: string;
     this.phone = '';
     this.subject = '';
     this.message = '';
+    this.dir = undefined;
   }
 
   ngOnInit() {
@@ -199,6 +205,14 @@ public name: string;
   ngAfterViewChecked() {
 
   }
+ 
+  getDirections(lat, lng) {
+    this.dir = {
+      origin: { lat: this.myLatLng.lat, lng: this.myLatLng.lng },
+      destination: { lat: lat, lng: lng },
+      suppressMarkers: true 
+    }
+}
 
   createMarkers() {
     this.markers = [];
