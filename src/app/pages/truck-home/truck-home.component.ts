@@ -16,6 +16,7 @@ export class TruckHomeComponent implements OnInit {
     lat: '',
     lng: ''
   };
+  youLabel: any = 'You';
   photoUrl: any;
   public style: any = [
     {

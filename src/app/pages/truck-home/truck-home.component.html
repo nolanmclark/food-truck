@@ -32,7 +32,7 @@
     <h1>Last Location</h1>
     <div class="map-info">
       <agm-map [styles]="style" [latitude]="curLoc.lat" [disableDoubleClickZoom]="true" [mapDraggable]="false" [zoomControl]="false" [maxZoom]=13 [minZoom]=13 [longitude]="curLoc.lng" [zoom]="13" style="height: 30vh; padding: 0; margin: 0">
-        <agm-marker [latitude]="curLoc.lat" [longitude]="curLoc.lng" [label]="You"></agm-marker>
+        <agm-marker [latitude]="curLoc.lat" [longitude]="curLoc.lng" [label]="youLabel"></agm-marker>
       </agm-map>
     </div>
   </div>
