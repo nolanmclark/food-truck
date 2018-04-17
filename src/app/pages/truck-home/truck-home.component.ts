@@ -163,7 +163,9 @@ export class TruckHomeComponent implements OnInit {
   }
 
   logout() {
-    this.locService.stopSendingLoc();
+    if(this.sharing = true){
+      this.locService.stopSendingLoc();
+    }
     this.authService.logout();
     this.router.navigateByUrl('/home');
   }
