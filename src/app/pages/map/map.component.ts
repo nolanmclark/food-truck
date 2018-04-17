@@ -147,6 +147,7 @@ public name: string;
   myLatLng:any = {lat: '', lng: ''}
 
   markers: any[];
+  allMarkers: any[];
   loading: boolean;
 
   cntc_name: string;
@@ -155,6 +156,7 @@ public name: string;
   subject: string;
   message: string;
   dir = undefined;
+  firstLabel: string;
 
   truckList: any[] = [
     {
@@ -181,6 +183,7 @@ public name: string;
     this.subject = '';
     this.message = '';
     this.dir = undefined;
+    this.firstLabel = 'A';
   }
 
   ngOnInit() {
@@ -205,32 +208,48 @@ public name: string;
   ngAfterViewChecked() {
 
   }
- 
-  getDirections(lat, lng) {
+
+  getDirections(lat, lng, id) {
     this.dir = {
       origin: { lat: this.myLatLng.lat, lng: this.myLatLng.lng },
       destination: { lat: lat, lng: lng },
-      suppressMarkers: true 
+      //suppressMarkers: true
     }
+    this.markers = [];
+    this.allMarkers.forEach((marker) => {
+      if(marker.id !== id) {
+        this.markers.push({});
+      } else {
+        this.markers.push(marker);
+      }
+    });
+    this.markers.unshift(this.allMarkers[0]);
 }
 
   createMarkers() {
+    let label = this.firstLabel;
     this.markers = [];
     this.markers.push({
       lat: this.locService.myLatLng.lat,
       lng: this.locService.myLatLng.lng,
-      label: 'You',
-      truckName: 'You'
+      icon: './assets/images/yourlocation.png',
+      label: ' ',
+      //truckName: 'You'
     });
     this.truckList.forEach((truck) => {
+        truck.label = label;
         this.markers.push({
+          id: truck.tid,
           lat: truck.lat,
           lng: truck.lng,
-          truckName: truck.truckName,
-          icon: './assets/images/map-marker-icon.png',
+          truckName: truck.name,
+          label: label,
+          //icon: './assets/images/map-marker-icon.png',
           visibility: true
         });
+        label = String.fromCharCode(label.charCodeAt(0)+1);
     });
+    this.allMarkers = this.markers;
   }
 
   clickedMarker(label, idx) {

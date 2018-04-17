@@ -18,8 +18,13 @@
       (markerClick)="clickedMarker(m.truckName, i)"
       [latitude]="m.lat"
       [longitude]="m.lng"
-      [label]="m.truckName"
+      [label]="{
+          color: '#ffffff',
+          fontWeight: 'bold',
+          text: m.label
+        }"
       [iconUrl]="m.icon"
+      [zIndex]="i"
       >
       <agm-info-window>
         <strong>{{m.truckName}}</strong>
@@ -30,8 +35,8 @@
 
   <ul class="active-trucks make-scrollable">
     <li *ngFor="let truck of truckList | filter : query.value">
-      <div class="truck-name-info" (click)="getDirections(truck.lat, truck.lng)">
-        <h1>{{truck.name}}</h1>
+      <div class="truck-name-info" (click)="getDirections(truck.lat, truck.lng, truck.tid)">
+        <h1><strong>({{truck.label}})</strong> {{truck.name}}</h1>
         <p>Miles from you: {{truck.distanceFrom}}mi</p>
       </div>
       <div class="icons">
