@@ -142,13 +142,18 @@ export class TruckHomeComponent implements OnInit {
    }
 
   ngOnInit() {
-    let id = localStorage.getItem("truck_id");
-    this.http.get(`${this.apiRoot}/location/${id}`).subscribe(res => {
-      let response = res.json();
-      this.truckData = response;
-      this.curLoc = {lat: response.lat, lng: response.lng};
-      this.photoUrl = `/assets/images/truckPhotos/${this.truckData.tid}.jpg`;
-    });
+    if(this.authService.isLoggedIn()) {
+      let id = localStorage.getItem("truck_id");
+      this.http.get(`${this.apiRoot}/location/${id}`).subscribe(res => {
+        let response = res.json();
+        this.truckData = response;
+        this.curLoc = {lat: response.lat, lng: response.lng};
+        this.photoUrl = `/assets/images/truckPhotos/${this.truckData.tid}.jpg`;
+      });
+    } else {
+      alert('Must be logged in to use this function.')
+      this.router.navigateByUrl('/login');
+    }
   }
 
   startSharing(searching: boolean) {
