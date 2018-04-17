@@ -21,9 +21,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('/truck-client');
+      this.router.navigateByUrl('/truck-home');
     } else {
-
     }
   }
 
@@ -32,7 +31,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.email, this.pass).then((res) => {
         if(res === 'success') {
           console.log('logged in');
-          this.router.navigateByUrl('/truck-client');
+          setTimeout(() => {
+            this.router.navigateByUrl('/truck-home');
+          }, 500);
         } else {
           alert(res);
         }
