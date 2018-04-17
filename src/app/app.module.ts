@@ -24,6 +24,7 @@ import { KeysPipe } from './keys.pipe';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
+import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
     RegisterComponent,
     ForgotPasswordComponent,
     TruckHomeComponent,
+    MenuEditComponent,
   ],
   imports: [
     BrowserModule,

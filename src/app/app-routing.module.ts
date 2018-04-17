@@ -10,6 +10,7 @@ import {TruckClientComponent} from './pages/truck-client/truck-client.component'
 import { RegisterComponent } from './pages/register/register.component';
 import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
 import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
+import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
 
 const appRoutes: Routes = [
   {
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     children: [
       {path: '', redirectTo: 'truckHome', pathMatch: 'full'},
       {path: 'truckHome', component: TruckHomeComponent},
+      {path: 'menu-edit', component: MenuEditComponent},
     ]
   },
   {

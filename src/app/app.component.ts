@@ -13,6 +13,8 @@ export class AppComponent {
 
   }
 
+  
+
   getPosition() {
     if(window.navigator.geolocation){
         window.navigator.geolocation.getCurrentPosition((res) => {

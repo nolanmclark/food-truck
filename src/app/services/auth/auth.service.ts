@@ -8,6 +8,7 @@ export class AuthService {
 
   apiRoot="https://vs-genius.ddns.net/api/foodtruck";
   private userToken: any;
+  id: any;
 
   constructor(private http: Http) {
 
@@ -21,8 +22,16 @@ export class AuthService {
             if(res.status === 200) {
               let body = JSON.parse(res['_body']);
               let token = body.access_token;
-              this.userToken = token;
-              this.setSession(token);
+              let parse = this.parseJwt(token);
+              console.log(parse.identity);
+              this.http.get(`${this.apiRoot}/user/${parse.identity}`).subscribe((tid: Response) => {
+                if(tid.status === 200) {
+                  let getTID = JSON.parse(tid['_body']);
+                  this.id = getTID.tid;
+                  this.userToken = token;
+                  this.setSession(token, this.id);
+                }
+              });
               resolve('success');
             } else if(res.status === 401) {
               alert("Invalid Credentials");
@@ -41,6 +50,12 @@ export class AuthService {
      return this.userToken;
    }
 
+  parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  };
+
   test(token) {
      let url = `${this.apiRoot}/protected`;
      let headers = new Headers();
@@ -53,8 +68,9 @@ export class AuthService {
      });
    }
 
-   private setSession(token) {
+   private setSession(token, truck_id) {
        localStorage.setItem('id_token', token);
+       localStorage.setItem('truck_id', truck_id);
    }
 
    getSession() {

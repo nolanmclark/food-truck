@@ -44,6 +44,11 @@ export class LocationService {
     }
   }
 
+  isOpen() {
+    let url = `${this.apiRoot}/location`;
+
+  }
+
   getTruckLocation(tid) {
     this.tid = tid;
     this.lastCoords = {

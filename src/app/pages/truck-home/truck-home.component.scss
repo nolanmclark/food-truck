@@ -69,13 +69,17 @@
                 list-style: none;
                 padding: 0;
                 display: flex;
+                margin: 10px 0;
                 li {
                     padding-right: 10px;
                     a {
                         font-size: .8em;
                         font-weight: 600;
-                        color: #1768b3;
-                        text-decoration: underline;
+                        padding: 8px 15px;
+                        background-color: #5394ff;
+                        text-decoration: none;
+                        color: #fff;
+                        border-radius: 4px;
                     }
                 }
             }

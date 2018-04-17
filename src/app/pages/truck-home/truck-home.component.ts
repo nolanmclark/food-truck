@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { LocationService } from '../../services/location/location.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-truck-home',
@@ -134,14 +136,14 @@ export class TruckHomeComponent implements OnInit {
     }
 ];
 
-  constructor(public http: Http, public locService: LocationService) {
+  constructor(public router: Router, public authService: AuthService, public http: Http, public locService: LocationService) {
     this.sharing = this.locService.stillSharing();
     console.log(this.sharing);
    }
 
   ngOnInit() {
-    this.http.get(`${this.apiRoot}/location/192`).subscribe(res => {
-      // this.http.get(`${this.apiRoot}/location/${this.truckData.tid}`).subscribe(res => {
+    let id = localStorage.getItem("truck_id");
+    this.http.get(`${this.apiRoot}/location/${id}`).subscribe(res => {
       let response = res.json();
       this.truckData = response;
       this.curLoc = {lat: response.lat, lng: response.lng};
@@ -153,5 +155,10 @@ export class TruckHomeComponent implements OnInit {
     this.sharing = searching;
     console.log(this.sharing + " sent");
     this.locService.startSendingLocation(searching, this.truckData.tid);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/home');
   }
 }
