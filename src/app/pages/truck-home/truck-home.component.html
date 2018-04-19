@@ -18,13 +18,11 @@
       </div>
       <div class="truck-info">
         <h1>{{truckData.name}}</h1>
-        <div class="truck-links">
-          <ul>
-            <li><a routerLink="/truck-client/menu-edit">Update Menu</a></li>
-            <li *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></li>
-            <li *ngIf="sharing"><a style="background-color: #ff5353" (click)="startSharing(false)">Stop Sharing Location</a></li>
-            <li><a (click)="logout()">Logout</a></li>
-          </ul>
+        <div class="button-row">
+            <a mat-raised-button color="primary" routerLink="/truck-client/menu-edit">Update Menu</a>
+            <button mat-raised-button color="primary" *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></button>
+            <button mat-raised-button color="warn" *ngIf="sharing"><a (click)="startSharing(false)">Stop Sharing Location</a></button>
+            <a mat-raised-button color="primary" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
@@ -32,8 +30,8 @@
   <div class="bottom-half">
     <h1>Last Location</h1>
     <div class="map-info">
-      <agm-map [styles]="style" [latitude]="curLoc.lat" [disableDoubleClickZoom]="true" [mapDraggable]="false" [zoomControl]="false" [maxZoom]=13 [minZoom]=13 [longitude]="curLoc.lng" [zoom]="13" style="height: 30vh; padding: 0; margin: 0">
-        <agm-marker [latitude]="curLoc.lat" [longitude]="curLoc.lng" [label]="youLabel"></agm-marker>
+      <agm-map [styles]="style" [latitude]="marker.lat" [disableDoubleClickZoom]="true" [mapDraggable]="false" [zoomControl]="false" [maxZoom]=13 [minZoom]=13 [longitude]="marker.lng" [zoom]="13" style="height: 30vh; padding: 0; margin: 0">
+        <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [label]="" [iconUrl]="marker.icon"></agm-marker>
       </agm-map>
     </div>
   </div>

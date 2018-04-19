@@ -80,7 +80,7 @@
                         font-size: .8em;
                         font-weight: 600;
                         padding: 8px 15px;
-                        background-color: #5394ff;
+                        //background-color: #5394ff;
                         text-decoration: none;
                         color: #fff;
                         border-radius: 4px;
@@ -89,4 +89,9 @@
             }
         }
     }
+}
+.example-button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

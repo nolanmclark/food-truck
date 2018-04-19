@@ -14,10 +14,7 @@ export class TruckHomeComponent implements OnInit {
   truckData: any = {};
   apiRoot: string = 'https://vs-genius.ddns.net/api/foodtruck';
   sharing: boolean;
-  curLoc: any = {
-    lat: '',
-    lng: ''
-  };
+  marker: any = {};
   youLabel: any = 'You';
   photoUrl: any;
   public style: any = [
@@ -147,7 +144,12 @@ export class TruckHomeComponent implements OnInit {
       this.http.get(`${this.apiRoot}/location/${id}`).subscribe(res => {
         let response = res.json();
         this.truckData = response;
-        this.curLoc = {lat: response.lat, lng: response.lng};
+        this.marker = {
+          lat: response.lat,
+          lng: response.lng,
+          icon: './assets/images/yourlocation.png',
+          label: ' ',
+        }
         this.photoUrl = `/assets/images/truckPhotos/${this.truckData.tid}.jpg`;
       });
     } else {

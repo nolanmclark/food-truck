@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { ClientHomeComponent } from './pages/client-home/client-home.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -53,6 +55,8 @@ import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     MatTabsModule,
+    MatCardModule,
+    MatButtonModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAqMfCGxfUAMshlsF7_D-oUpcuHMje-JIA'
     }),
