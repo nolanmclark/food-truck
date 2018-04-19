@@ -21,8 +21,13 @@ class Trucks (Base):
 		hash.update(str(time.time()).encode('utf-8'))
 		self.secret = hash.hexdigest()[:32]
 
-	def __repr__(self):
-		return '<tid: {}, secret: {}, name: {}, email: {}>'.format(self.tid, self.secret, self.name, self.email)
+	def validate_secret(self, secr):
+		if secr == self.secret:
+			return True
+		return False
+
+	def __str__(self):
+		return 'tid: {}, secret: {}, name: {}, email: {}'.format(self.tid, self.secret, self.name, self.email)
 
 	def asdict(self):
 		return  {
@@ -40,20 +45,29 @@ class Users (Base):
 	fname = Column(String(30))
 	lname = Column(String(30))
 	email = Column(String(320), unique=True)
+	phone = Column(String(20))
 
-	def __init__(self, pswd, tid, fname, lname, email):
+	def __init__(self, pswd, tid, fname, lname, email, phone):
 		self.pswd = bcrypt.encrypt(pswd)
 		self.tid = tid
 		self.fname = fname
 		self.lname = lname
 		self.email = email
+		self.phone = phone
+	
+	def set_pswd(self, pw):
+		try:
+			self.pswd = bcrypt.encrypt(pw)
+			return 0
+		except:
+			return 'error'
 
-	def validate_pw(self, pw):
+	def validate_pswd(self, pw):
 		return bcrypt.verify(pw, self.pswd)
 
 	def __str__(self):
-		return 'uid: {}, tid: {}, fname: {}, lname: {}, email: {}' \
-	  .format(self.uid, self.tid, self.fname, self.lname, self.email)
+		return 'uid: {}, tid: {}, fname: {}, lname: {}, email: {}, phone: {}' \
+	  .format(self.uid, self.tid, self.fname, self.lname, self.email, self.phone)
 
 	def asdict(self):
 		return  {
@@ -61,7 +75,8 @@ class Users (Base):
 		'tid': self.tid,
 		'fname': self.fname,
 		'lname': self.lname,
-		'email': self.email
+		'email': self.email,
+		'phone': self.phone
 	}
 
 class Truck_Locs (Base):
@@ -72,17 +87,26 @@ class Truck_Locs (Base):
 	address = Column(String(140))
 	open = Column(TINYINT)
 	
-	def __init__(self, tid, lat, lng, address, open):
+	def __init__(self, tid, lat, lng, address, opn):
 		self.tid = tid
 		self.lat = lat 
 		self.lng = lng 
 		self.address = address
-		self.open = open
+		self.open = opn
 		
 	def __str__(self):
 		return 'tid: {}, lat: {}, lng {}, address: {}, open: {}'\
 			.format(self.tid, self.lat, self.lng, self.address, self.open)
-			
+		
+	def update_loc(self, lat, lng, opn):
+		try:
+			self.lat = lat
+			self.lng = lng
+			self.open = opn
+			return 0
+		except:
+			return 'error'
+
 	def asdict(self):
 		return {
 	'tid': self.tid,
@@ -139,7 +163,9 @@ class Menu_Items (Base):
 	def __str__(self):
 		return 'iid: {}, mid: {}, category: {}, item: {}, inv: {}, descr: {}, price: {}' \
 			.format(self.iid, self.mid, self.category, self.inv, self.descr, self.price)
-
+	
+	def update_item(self, mid, category, item, inv, descr, price):
+		self.__init__(mid, category, item, inv, descr, price)
 
 	def asitem(self):
 		return {
@@ -221,4 +247,4 @@ class Truck_Location(Base):
 	'lng': self.lng,
 	'address': self.address,
 	'open': self.open
-			}
+	}
