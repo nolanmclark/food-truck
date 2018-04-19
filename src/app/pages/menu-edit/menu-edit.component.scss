@@ -10,3 +10,12 @@
 .content {
     margin: 20px;
 }
+.card .card-body {
+    position: relative;
+    box-shadow: none;
+    max-width: 80%;
+}
+.md-form .btn {
+    margin-bottom: 1rem;
+    padding: 10px 70px;
+}
