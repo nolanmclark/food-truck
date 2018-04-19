@@ -1,7 +1,10 @@
 
 <div id="content">
     <div class="loader" *ngIf="loading">
-        <p>Finding trucks near you</p>
+        <div class="waiting">
+            <p class="wave">🚚 </p>
+            <h4>Getting trucks near you...</h4>
+        </div>
     </div>
   <div class="search">
     <input #query type="text" placeholder="Food truck name..." class="form-control-update controls" (input)="onKey($event)" />

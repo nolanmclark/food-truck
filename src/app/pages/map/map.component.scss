@@ -23,58 +23,40 @@
     background-color: #32455d !important; 
 }
 
-.loader p {
+.waiting {
+    position: relative;
+    top: 40%;
+}
+
+.waiting::before {
+    clear: both;
+    content: "";
+    display: table;
+    margin-top: -1px;
+    height: 0;
+  }
+
+.waiting p {
+    color: #fff;
+    font-size: 4em;
+    margin: auto;
+    z-index: 999999;
+    text-align: center;
+    position: relative;
+    width: 50%;
+    height: inherit;
+    display: block;
+}
+
+.loader div h4 {
     color: #fff;
     font-size: 1em;
     margin: auto;
     z-index: 999999;
     text-align: center;
     position: relative;
-    top: 50%;
-    width: 50%;
-    height: inherit;
     display: block;
 }
-
-.loader p:after {
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: bottom;
-    -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
-    animation: ellipsis steps(4,end) 900ms infinite;
-    content: "\2026"; /* ascii code for the ellipsis character */
-    width: 0px;
-  }
-  
-  @keyframes ellipsis {
-    to {
-      width: 1.25em;    
-    }
-  }
-  
-  @-webkit-keyframes ellipsis {
-    to {
-      width: 1.25em;    
-    }
-  }
-
-  @keyframes fade{
-    from {
-        opacity: 1;
-    }
-    to {
-      opacity: 0;    
-    }
-  }
-  
-  @-webkit-keyframes fade {
-    from {
-        opacity: 1;
-    }
-    to {
-      opacity: 0;    
-    }
-  }
 
 .search {
   box-shadow: 0px 4px 10px rgba(0,0,0, 0.3);
@@ -86,6 +68,21 @@
   width: 80%;
   max-width: 600px;
   height: 45px;
+}
+
+.wave {
+    font-size: 4em;
+    animation: wave .2s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  @keyframes wave {
+    0%, 100% {
+      margin-top: 0;
+    }
+    50% {
+      margin-top: 3px;
+  }
 }
 
 .make-scrollable {
