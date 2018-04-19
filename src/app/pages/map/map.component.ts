@@ -197,7 +197,7 @@ public name: string;
   async locationInit() {
       if(this.locService.myLatLng.lat === "") {
         console.log("DN Exist")
-        return await this.getPosition();
+        return this.getPosition();
       } else {
         console.log("Updated map with " + this.myLatLng.lat + " " + this.myLatLng.lng);
         this.myLatLng = this.locService.myLatLng;

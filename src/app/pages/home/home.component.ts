@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
   }
 
   getPosition() {
-    if(window.navigator.geolocation){
-        window.navigator.geolocation.getCurrentPosition((res) => {
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((res) => {
           if(res) {
             this.locService.setLocation(res.coords)
           } else {
