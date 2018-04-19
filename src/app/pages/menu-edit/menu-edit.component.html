@@ -1,3 +1,18 @@
-<p>
-  menu-edit works!
-</p>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
+    <logo>
+        <a class="logo navbar-brand" routerLink="['home']"><strong>FüdTime</strong></a>
+    </logo>
+    <links>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <p class="truckIntro">Hello, <strong>{{truckData.name}}</strong>.</p>
+            </li>
+        </ul>
+    </links>
+  </mdb-navbar>
+  <div class="content">
+      <p>
+          menu-edit works!
+      </p>
+  </div> 
+

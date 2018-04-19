@@ -27,10 +27,13 @@ const appRoutes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'truck-home',
-    component: TruckHomeComponent,
+    path: 'truck-client',
+    component: TruckClientComponent,
     children: [
-      {path: 'menu-edit', component: MenuEditComponent}
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      {path: 'dashboard', component: TruckHomeComponent},
+      {path: 'menu-edit', component: MenuEditComponent},
+      {path: '**', redirectTo: 'home', pathMatch: 'full'},
     ]
   },
   {

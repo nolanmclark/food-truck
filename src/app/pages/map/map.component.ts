@@ -23,6 +23,7 @@ public name: string;
   menu: any;
   currentTruckName: any;
   currentTruckID: any;
+  givingDirections: boolean;
 
   options:any = {
     suppressMarkers: true
@@ -190,6 +191,7 @@ public name: string;
     this.locationInit().then(res => {
         this.getAllTrucks();
     });
+    this.givingDirections = false;
   }
 
   async locationInit() {
@@ -210,6 +212,7 @@ public name: string;
   }
 
   getDirections(lat, lng, id) {
+    this.givingDirections = true;
     this.dir = {
       origin: { lat: this.myLatLng.lat, lng: this.myLatLng.lng },
       destination: { lat: lat, lng: lng },
@@ -225,6 +228,17 @@ public name: string;
     });
     this.markers.unshift(this.allMarkers[0]);
 }
+
+    resetMarkers() {
+        this.givingDirections = false;
+        this.dir = false;
+        
+        this.markers = [];
+        this.allMarkers.forEach((marker) => {
+            this.markers.push(marker);
+        });
+        this.markers.unshift(this.allMarkers[0]);
+    }
 
   createMarkers() {
     let label = this.firstLabel;

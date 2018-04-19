@@ -20,7 +20,7 @@
         <h1>{{truckData.name}}</h1>
         <div class="truck-links">
           <ul>
-            <li><a routerLink='/truck-client/menu-edit'>Update Menu</a></li>
+            <li><a routerLink="/truck-client/menu-edit">Update Menu</a></li>
             <li *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></li>
             <li *ngIf="sharing"><a style="background-color: #ff5353" (click)="startSharing(false)">Stop Sharing Location</a></li>
             <li><a (click)="logout()">Logout</a></li>
