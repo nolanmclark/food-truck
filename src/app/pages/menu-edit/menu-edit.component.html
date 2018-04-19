@@ -17,12 +17,12 @@
       <mat-tab *ngFor="let category of categories" label="{{category}}">
         <div *ngFor="let menuItem of menu[category]; let i = index">
           <mat-card>
-              <input type="text" [ngModel]="menuItem.item" (ngModelChange)="onChange($event, category, i, 'item')">
-              <input type="text" [ngModel]="menuItem.descr" (ngModelChange)="onChange($event, category, i, 'descr')">
-              <input type="text" [ngModel]="menuItem.price" (ngModelChange)="onChange($event, category, i, 'cost')">
+              <input id="item{{i}}" type="text" [ngModel]="menuItem.item" (ngModelChange)="onChange($event, category, i, 'item')">
+              <input id="descr{{i}}" type="text" [ngModel]="menuItem.descr" (ngModelChange)="onChange($event, category, i, 'descr')">
+              <input id="price{{i}}" type="text" [ngModel]="menuItem.price" (ngModelChange)="onChange($event, category, i, 'cost')">
           </mat-card>
         </div>
       </mat-tab>
     </mat-tab-group>
-    <button mat-raised-button (click)="updateMenu()">Update</button>
+    <button mat-raised-button id="update" (click)="updateMenu()">Update</button>
   </div>

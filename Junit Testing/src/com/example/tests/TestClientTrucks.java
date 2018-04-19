@@ -99,6 +99,7 @@ public class TestClientTrucks {
 	    driver.findElement(By.id("form2")).clear();
 	    driver.findElement(By.id("form2")).sendKeys("password");
 	    driver.findElement(By.xpath("//div[4]/button")).click();
+	    driver.findElement(By.linkText("Dashboard")).click();
 	    try {
 	   	   Thread.sleep(2000);
 	   	} catch (InterruptedException e) {
@@ -139,6 +140,7 @@ public class TestClientTrucks {
 	    driver.findElement(By.id("form2")).clear();
 	    driver.findElement(By.id("form2")).sendKeys("password");
 	    driver.findElement(By.xpath("//div[4]/button")).click();
+	    driver.findElement(By.linkText("Dashboard")).click();
 	    try {
 	   	   Thread.sleep(4000);
 	   	} catch (InterruptedException e) {
@@ -153,6 +155,72 @@ public class TestClientTrucks {
 	   	}
 	    driver.findElement(By.linkText("Logout")).click();
   }
+  
+  @Test
+  public void shouldOpenEditMenuScreen() throws Exception {
+	    driver.get("http://localhost:4200/home");
+	    driver.findElement(By.linkText("Login")).click();
+	    driver.findElement(By.id("form3")).click();
+	    driver.findElement(By.id("form3")).clear();
+	    driver.findElement(By.id("form3")).sendKeys("rjames@example.com");
+	    driver.findElement(By.id("form2")).clear();
+	    driver.findElement(By.id("form2")).sendKeys("password");
+	    driver.findElement(By.xpath("//div[4]/button")).click();
+	    driver.findElement(By.linkText("Dashboard")).click();
+	    try {
+	   	   Thread.sleep(4000);
+	   	} catch (InterruptedException e) {
+	   	   e.printStackTrace();
+	   	}
+	    driver.findElement(By.xpath("//a/span")).click();
+  }
+  @Test
+  public void shouldEditMenuButNoChanges() throws Exception {
+	    driver.get("http://localhost:4200/home");
+	    driver.findElement(By.linkText("Login")).click();
+	    driver.findElement(By.id("form3")).click();
+	    driver.findElement(By.id("form3")).clear();
+	    driver.findElement(By.id("form3")).sendKeys("rjames@example.com");
+	    driver.findElement(By.id("form2")).clear();
+	    driver.findElement(By.id("form2")).sendKeys("password");
+	    driver.findElement(By.xpath("//div[4]/button")).click();
+	    driver.findElement(By.linkText("Dashboard")).click();
+	    try {
+	   	   Thread.sleep(4000);
+	   	} catch (InterruptedException e) {
+	   	   e.printStackTrace();
+	   	}
+	    driver.findElement(By.xpath("//a/span")).click();
+	    driver.findElement(By.xpath("//button[@id='update']/span")).click();
+	    assertEquals("No changes.", closeAlertAndGetItsText());
+}
+  @Test
+  public void shouldEditMenuAndMakeChanges() throws Exception {
+	    driver.get("http://localhost:4200/home");
+	    driver.findElement(By.linkText("Login")).click();
+	    driver.findElement(By.id("form3")).click();
+	    driver.findElement(By.id("form3")).clear();
+	    driver.findElement(By.id("form3")).sendKeys("rjames@example.com");
+	    driver.findElement(By.id("form2")).clear();
+	    driver.findElement(By.id("form2")).sendKeys("password");
+	    driver.findElement(By.xpath("//div[4]/button")).click();
+	    driver.findElement(By.linkText("Dashboard")).click();
+	    try {
+	   	   Thread.sleep(4000);
+	   	} catch (InterruptedException e) {
+	   	   e.printStackTrace();
+	   	}
+	    driver.findElement(By.xpath("//a/span")).click();
+	    try {
+		   	   Thread.sleep(1000);
+		   	} catch (InterruptedException e) {
+		   	   e.printStackTrace();
+		   	}
+	    driver.findElement(By.id("item0")).click();
+	    driver.findElement(By.id("item0")).clear();
+	    driver.findElement(By.id("item0")).sendKeys("Honey Smoked Ham");
+	    driver.findElement(By.xpath("//button[@id='update']/span")).click();
+	    }
   
   
 
