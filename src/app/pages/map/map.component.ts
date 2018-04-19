@@ -227,18 +227,18 @@ public name: string;
       }
     });
     this.markers.unshift(this.allMarkers[0]);
-}
+  }
 
-    resetMarkers() {
-        this.givingDirections = false;
-        this.dir = false;
+  resetMarkers() {
+      this.givingDirections = false;
+      this.dir = {};
 
-        this.markers = [];
-        this.allMarkers.forEach((marker) => {
-            this.markers.push(marker);
-        });
-        this.markers.unshift(this.allMarkers[0]);
-    }
+      this.markers = [];
+      this.allMarkers.forEach((marker) => {
+          this.markers.push(marker);
+      });
+      this.markers.unshift(this.allMarkers[0]);
+  }
 
   createMarkers() {
     let label = this.firstLabel;

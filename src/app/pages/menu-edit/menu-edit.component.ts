@@ -15,11 +15,13 @@ export class MenuEditComponent implements OnInit {
   changed: any = [];
   categories: any = [];
   tid: any = '';
+  loggedin: boolean = false;
 
   constructor(public http: Http, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     if(this.authService.isLoggedIn()) {
+      this.loggedin = true;
       this.tid = localStorage.getItem("truck_id");
       this.http.get(`${this.apiRoot}/menu/${this.tid}`).subscribe(res => {
         let response = res.json();

@@ -5,7 +5,8 @@
     <links>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item waves-light" mdbRippleRadius>
-                <!--<p class="truckIntro" routerLink="/truck-client">Hello, <strong>{{truckData.name}}</strong>.</p>-->
+                <a class="nav-link" routerLink="/login" *ngIf="!loggedin">Login</a>
+                <a class="nav-link" routerLink="/login" *ngIf="loggedin">Dashboard</a>
             </li>
         </ul>
     </links>
