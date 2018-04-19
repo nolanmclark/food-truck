@@ -33,6 +33,8 @@ export class MenuEditComponent implements OnInit {
 
   updateMenu() {
     console.log(this.menu);
+    let data = {};
+
     this.http.post(`${this.apiRoot}/menus/update/${this.tid}`, this.menu).subscribe(res => {
       let response = res.json();
       if(response.status === 'success'){

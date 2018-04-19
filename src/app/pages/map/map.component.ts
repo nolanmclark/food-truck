@@ -232,7 +232,7 @@ public name: string;
     resetMarkers() {
         this.givingDirections = false;
         this.dir = false;
-        
+
         this.markers = [];
         this.allMarkers.forEach((marker) => {
             this.markers.push(marker);
@@ -272,7 +272,7 @@ public name: string;
 
   openMenu(id, name) {
     this.currentTruckName = name;
-    this.http.get(`${this.apiRoot}/menus/${id}`).subscribe(res => {
+    this.http.get(`${this.apiRoot}/menu/${id}`).subscribe(res => {
         let response = res.json();
         this.menu = Object.keys(response).map(i => response[i]);
         this.contentModal.show();
