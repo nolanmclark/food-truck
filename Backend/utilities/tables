@@ -1,0 +1,34 @@
+Users:
+	Column('uid', Integer(), table=<users>, primary_key=True, nullable=False)
+	Column('tid', Integer(), ForeignKey('trucks.tid'), table=<users>)
+	Column('fname', String(length=30), table=<users>)
+	Column('lname', String(length=30), table=<users>)
+	Column('email', String(length=320), table=<users>)
+Trucks:
+	Column('tid', Integer(), table=<trucks>, primary_key=True, nullable=False)
+	Column('name', String(length=100), table=<trucks>)
+	Column('email', String(length=320), table=<trucks>)
+Menu_Items:
+	Column('iid', Integer(), table=<menu_items>, primary_key=True, nullable=False)
+	Column('mid', Integer(), ForeignKey('menus.mid'), table=<menu_items>)
+	Column('category', String(length=100), table=<menu_items>)
+	Column('item', String(length=100), table=<menu_items>)
+	Column('inv', Integer(), table=<menu_items>)
+	Column('descr', String(length=400), table=<menu_items>)
+	Column('price', Numeric(precision=13, scale=2), table=<menu_items>)
+Truck_Location:
+	Column('tid', Integer(), ForeignKey('trucks.tid'), table=<truck_locs>, primary_key=True, nullable=False)
+	Column('lat', Numeric(precision=10, scale=8), table=<truck_locs>)
+	Column('lng', Numeric(precision=11, scale=8), table=<truck_locs>)
+	Column('address', String(length=140), table=<truck_locs>)
+	Column('open', TINYINT(), table=<truck_locs>)
+Truck_Locs:
+	Column('tid', Integer(), ForeignKey('trucks.tid'), table=<truck_locs>, primary_key=True, nullable=False)
+	Column('lat', Numeric(precision=10, scale=8), table=<truck_locs>)
+	Column('lng', Numeric(precision=11, scale=8), table=<truck_locs>)
+	Column('address', String(length=140), table=<truck_locs>)
+	Column('open', TINYINT(), table=<truck_locs>)
+Menus:
+	Column('mid', Integer(), table=<menus>, primary_key=True, nullable=False)
+	Column('tid', Integer(), ForeignKey('trucks.tid'), table=<menus>)
+	Column('menu_img_url', String(length=100), table=<menus>)
