@@ -21,7 +21,7 @@
         <div class="button-row">
             <a mat-raised-button color="primary" routerLink="/truck-client/menu-edit">Update Menu</a>
             <button mat-raised-button color="primary" *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></button>
-            <button mat-raised-button color="warn" *ngIf="sharing"><a (click)="startSharing(false)">Stop Sharing Location</a></button>
+            <button style="background-color: #ff4141;" mat-raised-button color="warn" *ngIf="sharing"><a (click)="startSharing(false)">Stop Sharing Location</a></button>
             <a mat-raised-button color="primary" (click)="logout()">Logout</a>
         </div>
       </div>
