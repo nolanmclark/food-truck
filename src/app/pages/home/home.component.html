@@ -4,11 +4,25 @@
             <a class="logo navbar-brand" routerLink="['home']">FüdTime</a>        
         </logo>
         <links>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto"  *ngIf="!loggedin">
                 <li class="nav-item waves-light" mdbRippleRadius>
-                    <a class="nav-link" routerLink="/login" *ngIf="!loggedin">Login</a>
-                    <a class="nav-link" routerLink="/login" *ngIf="loggedin">Dashboard</a>
+                    <a class="nav-link" routerLink="/login" >Login</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" *ngIf="loggedin">
+                <li class="nav-item dropdown" dropdown>
+                  <a dropdownToggle mdbWavesEffect type="button" style="padding: 0;" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    <div class="truck-img">
+                      <img [src]="photoUrl" />
+                    </div>
+                    <p class="truckIntro">Hello, <strong>{{truckData.name}}</strong>.</p>
+                  <span class="caret"></span></a>
+                  <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item" mdbWavesEffect routerLink="/login">Dashboard</a>
+                    <a class="dropdown-item" mdbWavesEffect routerLink="/truck-client/settings">Settings</a>  
+                    <a class="dropdown-item" mdbWavesEffect (click)="logout()">Logout</a>
+                  </div>
+              </li>
             </ul>
         </links>
     </mdb-navbar>

@@ -1,9 +1,10 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { ContactService } from '../../services/contact/contact.service';
 import {LocationService} from '../../services/location/location.service';
-import {AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
+import {AgmMarker, MarkerManager, GoogleMapsAPIWrapper, AgmMap, LatLngBounds} from '@agm/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import { AfterViewChecked } from '@angular/core';
+import { google } from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-map',
@@ -15,6 +16,7 @@ export class MapComponent implements OnInit, AfterViewChecked {
 @ViewChild('content') public contentModal;
 @ViewChild('style') public successModal;
 @ViewChild('form') public formModal;
+@ViewChild('AgmMap') agmMap: AgmMap;
 public name: string;
 
   public map: any = { lat: 41.2524, lng: -95.9980};

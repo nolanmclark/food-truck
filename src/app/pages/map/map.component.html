@@ -37,8 +37,8 @@
   </agm-map>
 
   <ul class="active-trucks make-scrollable">
-    <li class="tools">
-        <button mat-raised-button (click)="resetMarkers()">Reset</button>
+    <li class="tools" style="padding-bottom: 20px;">
+        <button mat-raised-button style="background-color: #2e5e8e" (click)="resetMarkers()">Reset</button>
     </li>
     <li *ngFor="let truck of truckList | filter : query.value">
       <div class="truck-name-info" (click)="getDirections(truck.lat, truck.lng, truck.tid)">

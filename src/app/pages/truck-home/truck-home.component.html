@@ -1,28 +1,12 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
-  <logo>
-      <a class="logo navbar-brand" routerLink="['home']"><strong>FüdTime</strong></a>
-  </logo>
-  <links>
-      <ul class="navbar-nav ml-auto">
-          <li class="nav-item waves-light" mdbRippleRadius>
-              <p class="truckIntro">Hello, <strong>{{truckData.name}}</strong>.</p>
-          </li>
-      </ul>
-  </links>
-</mdb-navbar>
 <div class="container">
   <div class="top-half">
     <div class="truck-data">
-      <div class="truck-img">
-        <img [src]="photoUrl" />
-      </div>
       <div class="truck-info">
         <h1>{{truckData.name}}</h1>
         <div class="button-row">
             <a mat-raised-button color="primary" routerLink="/truck-client/menu-edit">Update Menu</a>
             <button mat-raised-button color="primary" *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></button>
             <button style="background-color: #ff4141;" mat-raised-button color="warn" *ngIf="sharing"><a (click)="startSharing(false)">Stop Sharing Location</a></button>
-            <a mat-raised-button color="primary" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>

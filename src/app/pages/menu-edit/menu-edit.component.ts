@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpModule, Http, Headers } from '@angular/http';
 import { AuthService } from '../../services/auth/auth.service';
 import { RouterModule, Router } from '@angular/router';
+import {MatTabsModule, MatInkBar} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-menu-edit',
@@ -10,6 +11,7 @@ import { RouterModule, Router } from '@angular/router';
 })
 export class MenuEditComponent implements OnInit {
 
+  @ViewChild(MatInkBar) _inkBar: MatInkBar;
   apiRoot: string = 'https://vs-genius.ddns.net/api/foodtruck';
   menu: any = {};
   changed: any = [];

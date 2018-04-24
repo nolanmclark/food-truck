@@ -21,6 +21,35 @@
 }
 
 #update {
-    background-color: #62afff;
+    background-color: #2e5e8e;
     color: #fff;
+}
+
+.ng-star-inserted {
+    text-align: -webkit-center;
+}
+
+.mat-card {
+    width: 80%;
+    margin: 20px;
+}
+.mat-ripple {
+    overflow: hidden;
+}
+.firstItemInput {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #565656;
+}
+
+.mat-tab-label {
+    background-color: #ecac00;
+}
+
+:host /deep/ .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: #2e5e8e;
+  } 
+
+.mat-tab-label, .mat-tab-link {
+    color: rgba(0,0,0,.87);
 }
