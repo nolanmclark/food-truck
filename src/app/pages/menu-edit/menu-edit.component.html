@@ -1,28 +1,16 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
-    <logo>
-        <a class="logo navbar-brand" routerLink="['home']"><strong>FüdTime</strong></a>
-    </logo>
-    <links>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item waves-light" mdbRippleRadius>
-                <a class="nav-link" routerLink="/login" *ngIf="!loggedin">Login</a>
-                <a class="nav-link" routerLink="/login" *ngIf="loggedin">Dashboard</a>
-            </li>
-        </ul>
-    </links>
-  </mdb-navbar>
-
-  <div class="content">
+ <div class="content">
     <mat-tab-group>
       <mat-tab *ngFor="let category of categories" label="{{category}}">
         <div *ngFor="let menuItem of menu[category]; let i = index">
           <mat-card>
-              <input id="item{{i}}" type="text" [ngModel]="menuItem.item" (ngModelChange)="onChange($event, category, i, 'item')">
+              <input class="firstItemInput" id="item{{i}}" type="text" [ngModel]="menuItem.item" (ngModelChange)="onChange($event, category, i, 'item')">
               <input id="descr{{i}}" type="text" [ngModel]="menuItem.descr" (ngModelChange)="onChange($event, category, i, 'descr')">
               <input id="price{{i}}" type="text" [ngModel]="menuItem.price" (ngModelChange)="onChange($event, category, i, 'cost')">
           </mat-card>
         </div>
       </mat-tab>
     </mat-tab-group>
-    <button mat-raised-button id="update" (click)="updateMenu()">Update</button>
+    <div id="updateContainer" style="width: 100%; padding: 40px; text-align: center">
+        <button mat-raised-button id="update" (click)="updateMenu()" style="padding: 10px 20px">Save Changes</button>
+    </div>
   </div>

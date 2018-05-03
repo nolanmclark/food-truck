@@ -29,6 +29,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
 import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
     ForgotPasswordComponent,
     TruckHomeComponent,
     MenuEditComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

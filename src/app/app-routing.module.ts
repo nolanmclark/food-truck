@@ -11,6 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
 import { TruckHomeComponent } from './pages/truck-home/truck-home.component';
 import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const appRoutes: Routes = [
   {
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: TruckHomeComponent},
       {path: 'menu-edit', component: MenuEditComponent},
+      {path: 'settings', component: SettingsComponent},
       {path: '**', redirectTo: 'home', pathMatch: 'full'},
     ]
   },

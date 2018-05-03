@@ -1,1 +1,23 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
+        <logo>
+            <a class="logo navbar-brand" routerLink="/client-home/map"><strong>FüdTime</strong></a>
+        </logo>
+        <links>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown" dropdown>
+                  <a dropdownToggle mdbWavesEffect type="button" style="padding: 0;" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    <div class="truck-img">
+                      <img [src]="photoUrl" />
+                    </div>
+                    <p class="truckIntro">Hello, <strong>{{truckData.name}}</strong>.</p>
+                  <span class="caret"></span></a>
+                  <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item" mdbWavesEffect routerLink="/login">Dashboard</a>
+                    <a class="dropdown-item" mdbWavesEffect routerLink="/truck-client/settings">Settings</a>  
+                    <a class="dropdown-item" mdbWavesEffect (click)="logout()">Logout</a>
+                  </div>
+              </li>
+            </ul>
+        </links>
+      </mdb-navbar>
 <router-outlet></router-outlet>

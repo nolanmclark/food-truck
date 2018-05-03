@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar" [containerInside]="true">
   <logo>
       <a class="logo navbar-brand" routerLink="/client-home"><strong>FüdTime</strong></a>
@@ -10,19 +11,17 @@
       </ul>
   </links>
 </mdb-navbar>
+=======
+>>>>>>> 3b2121ce17aee275d63f8f3b2aa0d5d4f8c005aa
 <div class="container">
   <div class="top-half">
     <div class="truck-data">
-      <div class="truck-img">
-        <img [src]="photoUrl" />
-      </div>
       <div class="truck-info">
         <h1>{{truckData.name}}</h1>
         <div class="button-row">
             <a mat-raised-button color="primary" routerLink="/truck-client/menu-edit">Update Menu</a>
             <button mat-raised-button color="primary" *ngIf="!sharing"><a (click)="startSharing(true)">Start Sharing Location</a></button>
             <button style="background-color: #ff4141;" mat-raised-button color="warn" *ngIf="sharing"><a (click)="startSharing(false)">Stop Sharing Location</a></button>
-            <a mat-raised-button color="primary" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
