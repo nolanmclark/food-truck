@@ -85,18 +85,19 @@
 .truck-img {
     display: inline-block;
     img {
-        height: 40px;
-        width: 40px;
+        height: 120px;
+        width: 120px;
         transition: ease-in-out all .5s;
         border-radius: 50%;
     }
-} 
+}
 
 .truck-data {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    padding-left: 100px;
+    padding-left: 10%;
+    padding-right: 10%;
     display: inline-flex;
     flex-direction: row;
     .truck-info {
