@@ -10,17 +10,25 @@
     height: 100%;
 }
 
+agm-map button {
+  background-color: #fff !important;
+}
+
 .loader {
     width: 100%;
     height: 120%;
-    background-color: #2e5e8e;
+    background-color: #f1f1f1;
     z-index: 99999;
     align-items: center;
     transition: visibility 0s 1s, opacity 1s linear;
+    h4 {
+      color: #4285F4 !important;
+      font-weight: 500;
+    }
 }
 
 .btn-secondary {
-    background-color: #2e5e8e !important; 
+    background-color: #2e5e8e !important;
 }
 
 .waiting {
@@ -67,7 +75,7 @@
     animation: wave .2s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
     transform: translate3d(0, 0, 0);
   }
-  
+
   @keyframes wave {
     0%, 100% {
       margin-top: 0;
@@ -78,7 +86,7 @@
 }
 
 .make-scrollable {
-    height: 35vh; //Or any other height you wish
+    height: 45vh; //Or any other height you wish
     overflow-y: scroll;
 }
 
@@ -97,13 +105,18 @@
 }
 
 #menu-cat {
-    font-weight: 600 !important;
-    color: #2e5e8e !important;
+  font-weight: 500 !important;
+  color: #2e5e8e !important;
+  font-size: 22px;
 }
 
 #menu-item {
     font-weight: 400 !important;
     font-size: 1.2em !important;
+}
+
+#m-item {
+  margin-bottom: 8px;
 }
 
 @media (min-width: 576px) {
@@ -152,14 +165,38 @@
     color: #fff;
 }
 
-.active-trucks {
+.reset-btn {
   list-style: none;
   display: block;
   padding: 0 10px;
+  margin: 0;
   li {
     border-bottom: 1px solid #eee;
     width: 100%;
     padding: 20px 20px 0px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fff;
+
+    h1 {
+      font-size: 1em;
+      font-weight: 500;
+      padding-right: 20px;
+      color: #2e5e8e;
+    }
+  }
+}
+
+.active-trucks {
+  list-style: none;
+  display: block;
+  padding: 0 10px;
+  padding-bottom: 50px;
+  li {
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    padding: 20px;
     display: flex;
     flex-direction: row;
     background-color: #fff;
@@ -168,6 +205,9 @@
       font-weight: 500;
       padding-right: 20px;
       color: #2e5e8e;
+    }
+    p {
+      margin: 0;
     }
   }
 }
